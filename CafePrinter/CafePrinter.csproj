@@ -113,6 +113,7 @@
     <Compile Include="Model\Base\IVersionedRow.cs" />
     <Compile Include="Model\CoreModel.cs" />
     <Compile Include="Model\DbConfig\CoreDbConfig.cs" />
+    <Compile Include="Model\Tables\meta.cs" />
     <Compile Include="Model\Tables\control.cs" />
     <Compile Include="Model\Tables\control_type.cs" />
     <Compile Include="Model\Tables\device.cs" />
