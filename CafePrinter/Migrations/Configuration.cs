@@ -11,8 +11,8 @@ namespace CafePrintter.Migrations
     {
         public Configuration()
         {
-            //AutomaticMigrationsEnabled = true;
-            //AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             //ContextKey = "CafePrintter.Model.CoreModel";
 
             //// register mysql code generator
@@ -20,7 +20,6 @@ namespace CafePrintter.Migrations
             //CodeGenerator = new MySql.Data.Entity.MySqlMigrationCodeGenerator();
 
 
-            AutomaticMigrationsEnabled = false;
             SetSqlGenerator("MySql.Data.MySqlClient", new MySqlMigrationSqlGenerator());
             SetHistoryContextFactory("MySql.Data.MySqlClient", (conn, schema) => new MySqlHistoryContext(conn, schema));
             CodeGenerator = new MySqlMigrationCodeGenerator();
@@ -28,6 +27,9 @@ namespace CafePrintter.Migrations
 
         protected override void Seed(CafePrintter.Model.CoreModel context)
         {
+
+
+
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
@@ -41,14 +43,41 @@ namespace CafePrintter.Migrations
             //    );
             //
 
-            //context.user.AddOrUpdate(
-            //    p => p.id,
-            //    new Model.user() { username = "system", password = "123456" }
-            //    );
+            #region "Create Users"
+            context.sys_user.AddOrUpdate(
+                p => p.username,
+                new Model.sys_user() { username = "system", password = "123456" }
+                );
+            #endregion
 
+            #region "Create Control types"
+            context.control_type.AddOrUpdate(
+                p => p.code,
+                new Model.control_type() { code = "text", name = "Text"},
+                new Model.control_type() { code = "textarea", name = "Text area" },
+                new Model.control_type() { code = "checkbox", name = "Check box" },
+                new Model.control_type() { code = "radio", name = "Radio button" },
+                new Model.control_type() { code = "select", name = "Select" },
+                new Model.control_type() { code = "truefalse", name = "True/False" },
+                new Model.control_type() { code = "email", name = "Email" },
+                new Model.control_type() { code = "url", name = "URL" },
+                new Model.control_type() { code = "date", name = "Date" },
+                new Model.control_type() { code = "time", name = "Time" },
+                new Model.control_type() { code = "datetime", name = "Datetime" },
+                new Model.control_type() { code = "number", name = "Number" },
+                new Model.control_type() { code = "phone", name = "Phone" },
+                new Model.control_type() { code = "colorpicker", name = "Color picker" }
+                );
+            #endregion
 
-
-
+            #region "Create Controls"
+            context.control.AddOrUpdate(
+                p => p.code,
+                new Model.control() { code = "textEdit", name = "TextEdit" },
+                new Model.control() { code = "memoEdit", name = "MemoEdit" },
+                new Model.control() { code = "richEditControl", name = "RichEditControl" }
+                );
+            #endregion
         }
     }
 }

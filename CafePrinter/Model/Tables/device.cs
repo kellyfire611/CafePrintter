@@ -1,20 +1,19 @@
 namespace CafePrintter.Model
 {
+    using Base;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("cafeprinter.user")]
-    public partial class user
+    [Table("device")]
+    public partial class device : EntityBase
     {
-        public int id { get; set; }
-
         [StringLength(50)]
-        public string username { get; set; }
+        public string name { get; set; }
 
-        [StringLength(50)]
-        public string password { get; set; }
+        [StringLength(255)]
+        public string macAddress { get; set; }
     }
 }

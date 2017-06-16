@@ -6,6 +6,9 @@ namespace CafePrintter.Model
     using System.Linq;
     using DbConfig;
     using Migrations;
+    using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using Base;
 
     [DbConfigurationType(typeof(CoreDbConfig))]
     public partial class CoreModel : DbContext
@@ -16,46 +19,16 @@ namespace CafePrintter.Model
         }
 
         public virtual DbSet<device> device { get; set; }
-        public virtual DbSet<setting> setting { get; set; }
-        public virtual DbSet<user> user { get; set; }
+        public virtual DbSet<sys_setting> sys_setting { get; set; }
+        public virtual DbSet<sys_user> sys_user { get; set; }
+        public virtual DbSet<control_type> control_type { get; set; }
+        public virtual DbSet<control> control { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<device>()
-                .Property(e => e.name)
-                .IsUnicode(false);
+            modelBuilder.Entity<sys_setting>().Property(p => p.rowVersion).IsConcurrencyToken();
 
-            modelBuilder.Entity<device>()
-                .Property(e => e.macAddress)
-                .IsUnicode(false);
 
-            modelBuilder.Entity<setting>()
-                .Property(e => e.key)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<setting>()
-                .Property(e => e.value)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<setting>()
-                .Property(e => e.createdUser)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<setting>()
-                .Property(e => e.modifiedUser)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<setting>()
-                .Property(e => e.deletedUser)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<user>()
-                .Property(e => e.username)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<user>()
-                .Property(e => e.password)
-                .IsUnicode(false);
 
             //Database.SetInitializer<CoreModel>(null);
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<CoreModel, Configuration>());
@@ -63,6 +36,20 @@ namespace CafePrintter.Model
 
         public override int SaveChanges()
         {
+            var objectContextAdapter = this as IObjectContextAdapter;
+            if (objectContextAdapter != null)
+            {
+                objectContextAdapter.ObjectContext.DetectChanges();
+                foreach (ObjectStateEntry entry in objectContextAdapter.ObjectContext.ObjectStateManager.GetObjectStateEntries(EntityState.Modified))
+                {
+                    var v = entry.Entity as IVersionedRow;
+                    if (v != null)
+                        v.rowVersion++;
+                }
+            }
+
+
+
             foreach (var entry in ChangeTracker.Entries().Where(x => x.Entity.GetType().GetProperty("createdDate") != null))
             {
                 if (entry.State == EntityState.Added)
@@ -83,7 +70,7 @@ namespace CafePrintter.Model
 
             foreach (var entry in ChangeTracker.Entries().Where(
                 e =>
-                    e.Entity.GetType().GetProperty("modifiedDate") != null && (e.State == EntityState.Modified || e.State == EntityState.Added)))
+                    e.Entity.GetType().GetProperty("modifiedDate") != null && (e.State == EntityState.Modified)))
             {
                 entry.Property("modifiedDate").CurrentValue = DateTime.Now;
             }

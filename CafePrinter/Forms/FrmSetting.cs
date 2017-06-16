@@ -23,8 +23,7 @@ namespace CafePrintter.Forms
 
         private void FrmSetting_Load(object sender, EventArgs e)
         {
-            var query = from p in context.user
-                        select p;
+            var q = context.sys_user.FirstOrDefault();
         }
     }
 }
