@@ -27,22 +27,6 @@ namespace CafePrintter.Migrations
 
         protected override void Seed(CafePrintter.Model.CoreModel context)
         {
-
-
-
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
-
             #region "Create Users"
             context.sys_user.AddOrUpdate(
                 p => p.username,
@@ -76,6 +60,15 @@ namespace CafePrintter.Migrations
                 new Model.control() { code = "textEdit", name = "TextEdit" },
                 new Model.control() { code = "memoEdit", name = "MemoEdit" },
                 new Model.control() { code = "richEditControl", name = "RichEditControl" }
+                );
+            #endregion
+
+            #region "Create Control Type use control"
+            context.control_type_use_control.AddOrUpdate(
+                p => new { p.controlTypeId, p.controlId },
+                new Model.control_type_use_control() { controlTypeId = 1, controlId = 1 },
+                new Model.control_type_use_control() { controlTypeId = 1, controlId = 2 },
+                new Model.control_type_use_control() { controlTypeId = 2, controlId = 3 }
                 );
             #endregion
         }

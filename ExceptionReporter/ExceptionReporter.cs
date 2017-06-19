@@ -4,7 +4,7 @@ using System;
 using System.Reflection;
 using ExceptionReporting.Config;
 using ExceptionReporting.Core;
-using CuscLibrary.Net;
+using KFLibrary.Net;
 
 // ReSharper disable UnusedMember.Global
 

@@ -19,6 +19,9 @@ namespace CafePrintter.Forms
             InitializeComponent();
         }
 
-       
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

@@ -115,5 +115,10 @@ namespace CafePrintter
         {
             ClsHelper.ShowOrActiveForm(this, typeof(FrmCafe));
         }
+
+        private void bbiClose_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

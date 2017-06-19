@@ -17,5 +17,7 @@ namespace CafePrintter.Model
         public string name { get; set; }
 
         public long rowVersion { get; set; }
+
+        public virtual ICollection<control_type_use_control> control_type_use_control { get; set; }
     }
 }

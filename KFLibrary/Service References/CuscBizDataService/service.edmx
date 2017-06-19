@@ -1,0 +1,32 @@
+﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices m:DataServiceVersion="1.0" m:MaxDataServiceVersion="3.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+    <Schema Namespace="Model" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityType Name="License">
+        <Key>
+          <PropertyRef Name="LicenseID" />
+        </Key>
+        <Property Name="LicenseID" Type="Edm.Int64" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="LicenseType" Type="Edm.String" MaxLength="500" FixedLength="false" Unicode="true" />
+        <Property Name="LicenseUsername" Type="Edm.String" MaxLength="500" FixedLength="false" Unicode="true" />
+        <Property Name="LicenseFullname" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="LicenseDescription" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="LicenseKey" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="LicenseKeyFrom" Type="Edm.DateTime" Precision="3" />
+        <Property Name="LicenseKeyTo" Type="Edm.DateTime" Precision="3" />
+        <Property Name="LicenseKeyDomain" Type="Edm.String" MaxLength="500" FixedLength="false" Unicode="true" />
+        <Property Name="LicenseKeyIPv4" Type="Edm.String" MaxLength="500" FixedLength="false" Unicode="true" />
+        <Property Name="LicenseKeyIPv6" Type="Edm.String" MaxLength="500" FixedLength="false" Unicode="true" />
+        <Property Name="LicenseCreatedUser" Type="Edm.String" MaxLength="500" FixedLength="false" Unicode="true" />
+        <Property Name="LicenseCreatedDate" Type="Edm.DateTime" Precision="3" />
+        <Property Name="LicenseModifiedUser" Type="Edm.String" MaxLength="500" FixedLength="false" Unicode="true" />
+        <Property Name="LicenseModifiedDate" Type="Edm.DateTime" Precision="3" />
+        <Property Name="LicenseDeleted" Type="Edm.Boolean" />
+      </EntityType>
+    </Schema>
+    <Schema Namespace="CuscBizService" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityContainer Name="Entities" m:IsDefaultEntityContainer="true" p6:LazyLoadingEnabled="true" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntitySet Name="License" EntityType="Model.License" />
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

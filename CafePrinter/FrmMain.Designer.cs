@@ -110,6 +110,7 @@
             this.bbiClose.Id = 7;
             this.bbiClose.ImageOptions.ImageUri.Uri = "Close";
             this.bbiClose.Name = "bbiClose";
+            this.bbiClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiClose_ItemClick);
             // 
             // mainRibbonPage
             // 

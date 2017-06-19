@@ -23,6 +23,8 @@ namespace CafePrintter.Model
         public virtual DbSet<sys_user> sys_user { get; set; }
         public virtual DbSet<control_type> control_type { get; set; }
         public virtual DbSet<control> control { get; set; }
+        public virtual DbSet<control_type_use_control> control_type_use_control { get; set; }
+        public virtual DbSet<data_type> data_type { get; set; }
         public virtual DbSet<meta> meta { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

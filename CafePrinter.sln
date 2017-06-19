@@ -5,16 +5,42 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CafePrinter", "CafePrinter\CafePrinter.csproj", "{BAFADFC7-191A-4737-8BE3-2F7F3FEED305}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExceptionReporter.WinForms", "ExceptionReporter\ExceptionReporter.WinForms.csproj", "{C49896A3-C0DA-45C4-B30E-4D17E548DBF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KFLibrary", "KFLibrary\KFLibrary.csproj", "{88C0E46F-16CC-431D-BF84-7560C5ABD2A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BAFADFC7-191A-4737-8BE3-2F7F3FEED305}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BAFADFC7-191A-4737-8BE3-2F7F3FEED305}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAFADFC7-191A-4737-8BE3-2F7F3FEED305}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BAFADFC7-191A-4737-8BE3-2F7F3FEED305}.Debug|x86.Build.0 = Debug|Any CPU
 		{BAFADFC7-191A-4737-8BE3-2F7F3FEED305}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAFADFC7-191A-4737-8BE3-2F7F3FEED305}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAFADFC7-191A-4737-8BE3-2F7F3FEED305}.Release|x86.ActiveCfg = Release|Any CPU
+		{BAFADFC7-191A-4737-8BE3-2F7F3FEED305}.Release|x86.Build.0 = Release|Any CPU
+		{C49896A3-C0DA-45C4-B30E-4D17E548DBF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C49896A3-C0DA-45C4-B30E-4D17E548DBF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C49896A3-C0DA-45C4-B30E-4D17E548DBF6}.Debug|x86.ActiveCfg = Debug|x86
+		{C49896A3-C0DA-45C4-B30E-4D17E548DBF6}.Debug|x86.Build.0 = Debug|x86
+		{C49896A3-C0DA-45C4-B30E-4D17E548DBF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C49896A3-C0DA-45C4-B30E-4D17E548DBF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C49896A3-C0DA-45C4-B30E-4D17E548DBF6}.Release|x86.ActiveCfg = Release|x86
+		{C49896A3-C0DA-45C4-B30E-4D17E548DBF6}.Release|x86.Build.0 = Release|x86
+		{88C0E46F-16CC-431D-BF84-7560C5ABD2A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88C0E46F-16CC-431D-BF84-7560C5ABD2A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88C0E46F-16CC-431D-BF84-7560C5ABD2A2}.Debug|x86.ActiveCfg = Debug|x86
+		{88C0E46F-16CC-431D-BF84-7560C5ABD2A2}.Debug|x86.Build.0 = Debug|x86
+		{88C0E46F-16CC-431D-BF84-7560C5ABD2A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88C0E46F-16CC-431D-BF84-7560C5ABD2A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88C0E46F-16CC-431D-BF84-7560C5ABD2A2}.Release|x86.ActiveCfg = Release|x86
+		{88C0E46F-16CC-431D-BF84-7560C5ABD2A2}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
