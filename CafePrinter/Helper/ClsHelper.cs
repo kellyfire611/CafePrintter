@@ -13,36 +13,50 @@ namespace CafePrintter.Helper
     {
         public static Form ShowOrActiveForm(Form mdiParent, Type t)
         {
-            // Tìm trong danh sách
-            Form form = (from p in GlobalSetting.ChildFormList
-                         where p.GetType() == t
-                         select p).FirstOrDefault();
+            mdiParent.SuspendLayout();
+            try
+            {
+                // Tìm trong danh sách
+                Form form = (from p in GlobalSetting.ChildFormList
+                             where p.GetType() == t
+                             select p).FirstOrDefault();
 
-            if (form == null)
-            {
-                form = (Form)Activator.CreateInstance(t);
-                form.MdiParent = mdiParent;
-                form.WindowState = FormWindowState.Maximized;
-                GlobalSetting.ChildFormList.Add(form);
-                form.Show();
-            }
-            else
-            {
-                if (form.IsDisposed)
+                if (form == null)
                 {
                     form = (Form)Activator.CreateInstance(t);
-                    form.MdiParent = mdiParent;
-                    form.WindowState = FormWindowState.Maximized;
                     GlobalSetting.ChildFormList.Add(form);
+                    form.MdiParent = mdiParent;
+                    //form.WindowState = FormWindowState.Maximized;
+                    form.Dock = DockStyle.Fill;
                     form.Show();
+                    //form.WindowState = FormWindowState.Maximized;
                 }
                 else
                 {
-                    form.WindowState = FormWindowState.Maximized;
-                    form.Activate();
+                    if (form.IsDisposed)
+                    {
+                        form = (Form)Activator.CreateInstance(t);
+                        GlobalSetting.ChildFormList.Add(form);
+                        form.MdiParent = mdiParent;
+                        //form.WindowState = FormWindowState.Maximized;
+                        form.Dock = DockStyle.Fill;
+                        form.Show();
+                        //form.WindowState = FormWindowState.Maximized;
+                    }
+                    else
+                    {
+                        //form.WindowState = FormWindowState.Maximized;
+                        form.Activate();
+                        form.Dock = DockStyle.Fill;
+                        //form.WindowState = FormWindowState.Maximized;
+                    }
                 }
+                return form;
             }
-            return form;
+            finally
+            {
+                mdiParent.ResumeLayout();
+            }
         }
 
         public static void CloseForm(Type t)

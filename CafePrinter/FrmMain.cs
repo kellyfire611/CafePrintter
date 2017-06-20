@@ -120,5 +120,10 @@ namespace CafePrintter
         {
             Application.Exit();
         }
+
+        private void bbiSaveAndNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ClsHelper.ShowOrActiveForm(this, typeof(ExplorerView));
+        }
     }
 }

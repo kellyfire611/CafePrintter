@@ -23,5 +23,29 @@ namespace CafePrintter.Forms
         {
             
         }
+
+        private void btnRotateLeft_Click(object sender, EventArgs e)
+        {
+            pictureEdit1.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            pictureEdit1.Refresh();
+        }
+
+        private void btnRotateRight_Click(object sender, EventArgs e)
+        {
+            pictureEdit1.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            pictureEdit1.Refresh();
+        }
+
+        private void btnRotateHorizontal_Click(object sender, EventArgs e)
+        {
+            pictureEdit1.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            pictureEdit1.Refresh();
+        }
+
+        private void btnRotateVertical_Click(object sender, EventArgs e)
+        {
+            pictureEdit1.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            pictureEdit1.Refresh();
+        }
     }
 }

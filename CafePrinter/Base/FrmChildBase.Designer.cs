@@ -34,10 +34,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(790, 595);
+            this.ClientSize = new System.Drawing.Size(1014, 763);
             this.ControlBox = false;
             this.Name = "FrmChildBase";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.ShowInTaskbar = false;
             this.Text = "FrmChildBase";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
