@@ -15,5 +15,8 @@ namespace CafePrintter.Model
 
         [StringLength(50)]
         public string name { get; set; }
+
+        [StringLength(50)]
+        public string description { get; set; }
     }
 }

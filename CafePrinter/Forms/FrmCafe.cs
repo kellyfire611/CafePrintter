@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using DevExpress.XtraBars;
 using CafePrintter.Helper;
 using CafePrintter.Base;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace CafePrintter.Forms
 {
@@ -17,6 +19,7 @@ namespace CafePrintter.Forms
         public FrmCafe()
         {
             InitializeComponent();
+            synchronizationContext = SynchronizationContext.Current;
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -46,6 +49,42 @@ namespace CafePrintter.Forms
         {
             pictureEdit1.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
             pictureEdit1.Refresh();
+        }
+
+        private readonly SynchronizationContext synchronizationContext;
+        private DateTime previousTime = DateTime.Now;
+
+        private async void simpleButton1_Click(object sender, EventArgs e)
+        {
+            simpleButton1.Enabled = false;
+            var count = 0;
+
+
+            await Task.Run(() =>
+            {
+                for (var i = 0; i <= (5000000 * 50); i++)
+                {
+                    UpdateUI(i);
+                    count = i;
+                }
+            });
+
+            layoutControlItem1.Text = @"Counter " + count;
+            simpleButton1.Enabled = true;
+        }
+
+        public void UpdateUI(int value)
+        {
+            var timeNow = DateTime.Now;
+            Thread.Sleep(500);
+            if ((DateTime.Now - previousTime).Milliseconds <= 50) return;
+
+            synchronizationContext.Post(new SendOrPostCallback(o =>
+            {
+                layoutControlItem1.Text = @"Counter " + (int)o;
+            }), value);
+
+            previousTime = timeNow;
         }
     }
 }
