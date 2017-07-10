@@ -33,23 +33,23 @@ namespace CafePrintter.Forms
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExplorerView));
-            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup2 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem8 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem9 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem10 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem11 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem12 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem13 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem14 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.Skins.SkinPaddingEdges skinPaddingEdges3 = new DevExpress.Skins.SkinPaddingEdges();
-            DevExpress.Skins.SkinPaddingEdges skinPaddingEdges4 = new DevExpress.Skins.SkinPaddingEdges();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup1 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem1 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem2 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem3 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem4 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem5 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem6 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem7 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.Skins.SkinPaddingEdges skinPaddingEdges1 = new DevExpress.Skins.SkinPaddingEdges();
+            DevExpress.Skins.SkinPaddingEdges skinPaddingEdges2 = new DevExpress.Skins.SkinPaddingEdges();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.BreadCrumbNode breadCrumbNode3 = new DevExpress.XtraEditors.BreadCrumbNode();
-            DevExpress.XtraEditors.BreadCrumbNode breadCrumbNode4 = new DevExpress.XtraEditors.BreadCrumbNode();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.BreadCrumbNode breadCrumbNode1 = new DevExpress.XtraEditors.BreadCrumbNode();
+            DevExpress.XtraEditors.BreadCrumbNode breadCrumbNode2 = new DevExpress.XtraEditors.BreadCrumbNode();
             this.repositoryItemTextEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemTextEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.RibbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
@@ -143,6 +143,14 @@ namespace CafePrintter.Forms
             this.editBreadCrumb = new DevExpress.XtraEditors.BreadCrumbEdit();
             this.contentPanel = new DevExpress.XtraEditors.PanelControl();
             this.LayoutControl = new DevExpress.XtraLayout.LayoutControl();
+            this.lueSizeMode = new DevExpress.XtraEditors.LookUpEdit();
+            this.btnCropImage = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
+            this.btnXoayNgang = new DevExpress.XtraEditors.SimpleButton();
+            this.btnXoayTrai = new DevExpress.XtraEditors.SimpleButton();
+            this.btnXoayDoc = new DevExpress.XtraEditors.SimpleButton();
+            this.btnXoayPhai = new DevExpress.XtraEditors.SimpleButton();
+            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.gridControl = new DevExpress.XtraGrid.GridControl();
             this.winExplorerView = new DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView();
             this.columnName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -150,14 +158,23 @@ namespace CafePrintter.Forms
             this.columnCheck = new DevExpress.XtraGrid.Columns.GridColumn();
             this.columnGroup = new DevExpress.XtraGrid.Columns.GridColumn();
             this.columnImage = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.liNavPaneRight = new DevExpress.XtraLayout.LayoutControlItem();
             this.LayoutControlMainGroup = new DevExpress.XtraLayout.LayoutControlGroup();
             this.LayoutControlItemExplorerView = new DevExpress.XtraLayout.LayoutControlItem();
             this.SplitterItem1 = new DevExpress.XtraLayout.SplitterItem();
-            this.liNavPaneRight = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.itemPopupMenu = new DevExpress.XtraBars.PopupMenu(this.components);
             this.navigationMenu = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RibbonControl)).BeginInit();
@@ -178,16 +195,28 @@ namespace CafePrintter.Forms
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).BeginInit();
             this.LayoutControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lueSizeMode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.winExplorerView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.liNavPaneRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlMainGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemExplorerView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitterItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.liNavPaneRight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemPopupMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationMenu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             this.SuspendLayout();
             // 
             // repositoryItemTextEdit3
@@ -272,6 +301,7 @@ namespace CafePrintter.Forms
             this.repositoryItemTextEdit2});
             this.RibbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
             this.RibbonControl.Size = new System.Drawing.Size(1206, 143);
+            this.RibbonControl.Visible = false;
             // 
             // imgs
             // 
@@ -363,9 +393,9 @@ namespace CafePrintter.Forms
             this.ButtonItemCopy.Id = 38;
             this.ButtonItemCopy.Name = "ButtonItemCopy";
             this.ButtonItemCopy.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            toolTipItem2.Text = "The command is not implemented";
-            superToolTip2.Items.Add(toolTipItem2);
-            this.ButtonItemCopy.SuperTip = superToolTip2;
+            toolTipItem1.Text = "The command is not implemented";
+            superToolTip1.Items.Add(toolTipItem1);
+            this.ButtonItemCopy.SuperTip = superToolTip1;
             // 
             // ButtonItemPaste
             // 
@@ -661,41 +691,41 @@ namespace CafePrintter.Forms
             this.rgbiViewStyle.Gallery.Appearance.ItemCaptionAppearance.Pressed.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.rgbiViewStyle.Gallery.ColumnCount = 3;
             this.rgbiViewStyle.Gallery.DrawImageBackground = false;
-            galleryItemGroup2.Caption = "ViewStyleGroup";
-            galleryItem8.Caption = "Extra large view";
-            galleryItem8.Tag = 1;
-            galleryItem9.Caption = "Large icons";
-            galleryItem9.Checked = true;
-            galleryItem9.Tag = 2;
-            galleryItem10.Caption = "Medium icons";
-            galleryItem10.Tag = 3;
-            galleryItem11.Caption = "Small icons";
-            galleryItem11.Tag = 4;
-            galleryItem12.Caption = "List";
-            galleryItem12.Tag = 6;
-            galleryItem13.Caption = "Tiles";
-            galleryItem13.Tag = 5;
-            galleryItem14.Caption = "Content";
-            galleryItem14.Tag = 7;
-            galleryItemGroup2.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
-            galleryItem8,
-            galleryItem9,
-            galleryItem10,
-            galleryItem11,
-            galleryItem12,
-            galleryItem13,
-            galleryItem14});
+            galleryItemGroup1.Caption = "ViewStyleGroup";
+            galleryItem1.Caption = "Extra large view";
+            galleryItem1.Tag = 1;
+            galleryItem2.Caption = "Large icons";
+            galleryItem2.Checked = true;
+            galleryItem2.Tag = 2;
+            galleryItem3.Caption = "Medium icons";
+            galleryItem3.Tag = 3;
+            galleryItem4.Caption = "Small icons";
+            galleryItem4.Tag = 4;
+            galleryItem5.Caption = "List";
+            galleryItem5.Tag = 6;
+            galleryItem6.Caption = "Tiles";
+            galleryItem6.Tag = 5;
+            galleryItem7.Caption = "Content";
+            galleryItem7.Tag = 7;
+            galleryItemGroup1.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
+            galleryItem1,
+            galleryItem2,
+            galleryItem3,
+            galleryItem4,
+            galleryItem5,
+            galleryItem6,
+            galleryItem7});
             this.rgbiViewStyle.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup2});
+            galleryItemGroup1});
             this.rgbiViewStyle.Gallery.ImageSize = new System.Drawing.Size(18, 18);
             this.rgbiViewStyle.Gallery.ItemCheckMode = DevExpress.XtraBars.Ribbon.Gallery.ItemCheckMode.SingleRadio;
             this.rgbiViewStyle.Gallery.ItemImageLocation = DevExpress.Utils.Locations.Left;
-            skinPaddingEdges3.Bottom = -3;
-            skinPaddingEdges3.Top = -3;
-            this.rgbiViewStyle.Gallery.ItemImagePadding = skinPaddingEdges3;
-            skinPaddingEdges4.Bottom = -1;
-            skinPaddingEdges4.Top = -1;
-            this.rgbiViewStyle.Gallery.ItemTextPadding = skinPaddingEdges4;
+            skinPaddingEdges1.Bottom = -3;
+            skinPaddingEdges1.Top = -3;
+            this.rgbiViewStyle.Gallery.ItemImagePadding = skinPaddingEdges1;
+            skinPaddingEdges2.Bottom = -1;
+            skinPaddingEdges2.Top = -1;
+            this.rgbiViewStyle.Gallery.ItemTextPadding = skinPaddingEdges2;
             this.rgbiViewStyle.Gallery.ShowItemText = true;
             this.rgbiViewStyle.Id = 141;
             this.rgbiViewStyle.Name = "rgbiViewStyle";
@@ -886,11 +916,11 @@ namespace CafePrintter.Forms
             this.navPanelItemVideos});
             this.navBar.LinkInterval = 0;
             this.navBar.LinkSelectionMode = DevExpress.XtraNavBar.LinkSelectionModeType.OneInControl;
-            this.navBar.Location = new System.Drawing.Point(919, 287);
+            this.navBar.Location = new System.Drawing.Point(673, 287);
             this.navBar.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.navBar.Name = "navBar";
-            this.navBar.OptionsNavPane.ExpandedWidth = 291;
-            this.navBar.Size = new System.Drawing.Size(291, 253);
+            this.navBar.OptionsNavPane.ExpandedWidth = 537;
+            this.navBar.Size = new System.Drawing.Size(537, 253);
             this.navBar.TabIndex = 1;
             this.navBar.Text = "navigationPanel";
             this.navBar.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.OnNavPanelLinkClicked);
@@ -953,18 +983,17 @@ namespace CafePrintter.Forms
             // 
             // navigationPanel
             // 
-            this.navigationPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.navigationPanel.Controls.Add(this.btnNavigationHistory);
             this.navigationPanel.Controls.Add(this.btnUpTo);
             this.navigationPanel.Controls.Add(this.btnForward);
             this.navigationPanel.Controls.Add(this.btnBack);
             this.navigationPanel.Controls.Add(this.EditSearch);
             this.navigationPanel.Controls.Add(this.editBreadCrumb);
-            this.navigationPanel.Location = new System.Drawing.Point(0, 145);
+            this.navigationPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.navigationPanel.Location = new System.Drawing.Point(0, 143);
             this.navigationPanel.Margin = new System.Windows.Forms.Padding(0);
             this.navigationPanel.Name = "navigationPanel";
-            this.navigationPanel.Size = new System.Drawing.Size(1216, 34);
+            this.navigationPanel.Size = new System.Drawing.Size(1206, 37);
             this.navigationPanel.TabIndex = 3;
             // 
             // btnNavigationHistory
@@ -1056,12 +1085,12 @@ namespace CafePrintter.Forms
             // EditSearch
             // 
             this.EditSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.EditSearch.Location = new System.Drawing.Point(941, 5);
+            this.EditSearch.Location = new System.Drawing.Point(931, 5);
             this.EditSearch.MenuManager = this.RibbonControl;
             this.EditSearch.Name = "EditSearch";
             this.EditSearch.Properties.AutoHeight = false;
             this.EditSearch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("EditSearch.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("EditSearch.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.EditSearch.Size = new System.Drawing.Size(263, 24);
             this.EditSearch.TabIndex = 4;
             this.EditSearch.TextChanged += new System.EventHandler(this.OnEditSearchTextChanged);
@@ -1075,58 +1104,165 @@ namespace CafePrintter.Forms
             this.editBreadCrumb.Name = "editBreadCrumb";
             this.editBreadCrumb.Properties.AutoHeight = false;
             this.editBreadCrumb.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.SpinDown, "", 18, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Redo, "", 15, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.SpinDown, "", 18, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Redo, "", 15, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
             this.editBreadCrumb.Properties.DropDownRows = 12;
             this.editBreadCrumb.Properties.ImageIndex = 0;
             this.editBreadCrumb.Properties.Images = this.imgs;
-            breadCrumbNode3.Caption = "Root";
-            breadCrumbNode3.Persistent = true;
-            breadCrumbNode3.PopulateOnDemand = true;
-            breadCrumbNode3.ShowCaption = false;
-            breadCrumbNode3.Value = "Root";
-            breadCrumbNode4.Caption = "Computer";
-            breadCrumbNode4.Persistent = true;
-            breadCrumbNode4.PopulateOnDemand = true;
-            breadCrumbNode4.Value = "Computer";
+            breadCrumbNode1.Caption = "Root";
+            breadCrumbNode1.Persistent = true;
+            breadCrumbNode1.PopulateOnDemand = true;
+            breadCrumbNode1.ShowCaption = false;
+            breadCrumbNode1.Value = "Root";
+            breadCrumbNode2.Caption = "Computer";
+            breadCrumbNode2.Persistent = true;
+            breadCrumbNode2.PopulateOnDemand = true;
+            breadCrumbNode2.Value = "Computer";
             this.editBreadCrumb.Properties.Nodes.AddRange(new DevExpress.XtraEditors.BreadCrumbNode[] {
-            breadCrumbNode3,
-            breadCrumbNode4});
+            breadCrumbNode1,
+            breadCrumbNode2});
             this.editBreadCrumb.Properties.RootImageIndex = 0;
             this.editBreadCrumb.Properties.SortNodesByCaption = true;
             this.editBreadCrumb.Properties.RootGlyphClick += new System.EventHandler(this.OnBreadCrumbRootGlyphClick);
             this.editBreadCrumb.Properties.QueryChildNodes += new DevExpress.XtraEditors.BreadCrumbQueryChildNodesEventHandler(this.OnBreadCrumbQueryChildNodes);
             this.editBreadCrumb.Properties.ValidatePath += new DevExpress.XtraEditors.BreadCrumbValidatePathEventHandler(this.OnBreadCrumbValidatePath);
             this.editBreadCrumb.Properties.NewNodeAdding += new DevExpress.XtraEditors.BreadCrumbNewNodeAddingEventHandler(this.OnBreadCrumbNewNodeAdding);
-            this.editBreadCrumb.Size = new System.Drawing.Size(828, 24);
+            this.editBreadCrumb.Size = new System.Drawing.Size(818, 24);
             this.editBreadCrumb.TabIndex = 3;
             this.editBreadCrumb.PathChanged += new DevExpress.XtraEditors.BreadCrumbPathChangedEventHandler(this.OnBreadCrumbPathChanged);
             // 
             // contentPanel
             // 
-            this.contentPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.contentPanel.Controls.Add(this.LayoutControl);
-            this.contentPanel.Location = new System.Drawing.Point(0, 179);
+            this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.contentPanel.Location = new System.Drawing.Point(0, 180);
             this.contentPanel.Margin = new System.Windows.Forms.Padding(0);
             this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(1216, 546);
+            this.contentPanel.Size = new System.Drawing.Size(1206, 540);
             this.contentPanel.TabIndex = 5;
             // 
             // LayoutControl
             // 
-            this.LayoutControl.Controls.Add(this.pictureEdit1);
+            this.LayoutControl.Controls.Add(this.panelControl1);
+            this.LayoutControl.Controls.Add(this.lueSizeMode);
+            this.LayoutControl.Controls.Add(this.btnCropImage);
+            this.LayoutControl.Controls.Add(this.btnPrint);
+            this.LayoutControl.Controls.Add(this.btnXoayNgang);
+            this.LayoutControl.Controls.Add(this.btnXoayTrai);
+            this.LayoutControl.Controls.Add(this.btnXoayDoc);
+            this.LayoutControl.Controls.Add(this.btnXoayPhai);
             this.LayoutControl.Controls.Add(this.gridControl);
             this.LayoutControl.Controls.Add(this.navBar);
             this.LayoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutControl.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.liNavPaneRight});
             this.LayoutControl.Location = new System.Drawing.Point(2, 2);
             this.LayoutControl.Name = "LayoutControl";
-            this.LayoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(318, 324, 836, 529);
+            this.LayoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(708, 419, 836, 529);
             this.LayoutControl.Root = this.LayoutControlMainGroup;
-            this.LayoutControl.Size = new System.Drawing.Size(1212, 542);
+            this.LayoutControl.Size = new System.Drawing.Size(1202, 536);
             this.LayoutControl.TabIndex = 3;
             this.LayoutControl.Text = "LayoutControl";
+            // 
+            // lueSizeMode
+            // 
+            this.lueSizeMode.Location = new System.Drawing.Point(889, 414);
+            this.lueSizeMode.MenuManager = this.RibbonControl;
+            this.lueSizeMode.Name = "lueSizeMode";
+            this.lueSizeMode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueSizeMode.Properties.NullText = "";
+            this.lueSizeMode.Size = new System.Drawing.Size(299, 20);
+            this.lueSizeMode.StyleController = this.LayoutControl;
+            this.lueSizeMode.TabIndex = 9;
+            this.lueSizeMode.EditValueChanged += new System.EventHandler(this.lueSizeMode_EditValueChanged);
+            // 
+            // btnCropImage
+            // 
+            this.btnCropImage.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.btnCropImage.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.btnCropImage.Appearance.Options.UseFont = true;
+            this.btnCropImage.Appearance.Options.UseForeColor = true;
+            this.btnCropImage.Location = new System.Drawing.Point(1011, 349);
+            this.btnCropImage.Name = "btnCropImage";
+            this.btnCropImage.Size = new System.Drawing.Size(189, 31);
+            this.btnCropImage.StyleController = this.LayoutControl;
+            this.btnCropImage.TabIndex = 8;
+            this.btnCropImage.Text = "Crop Image";
+            this.btnCropImage.Click += new System.EventHandler(this.btnCropImage_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.btnPrint.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.btnPrint.Appearance.Options.UseFont = true;
+            this.btnPrint.Appearance.Options.UseForeColor = true;
+            this.btnPrint.Location = new System.Drawing.Point(817, 349);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(190, 31);
+            this.btnPrint.StyleController = this.LayoutControl;
+            this.btnPrint.TabIndex = 8;
+            this.btnPrint.Text = "In";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // btnXoayNgang
+            // 
+            this.btnXoayNgang.Location = new System.Drawing.Point(829, 438);
+            this.btnXoayNgang.Name = "btnXoayNgang";
+            this.btnXoayNgang.Size = new System.Drawing.Size(359, 22);
+            this.btnXoayNgang.StyleController = this.LayoutControl;
+            this.btnXoayNgang.TabIndex = 8;
+            this.btnXoayNgang.Text = "Xoay ngang";
+            this.btnXoayNgang.Click += new System.EventHandler(this.btnXoayNgang_Click);
+            // 
+            // btnXoayTrai
+            // 
+            this.btnXoayTrai.Location = new System.Drawing.Point(829, 464);
+            this.btnXoayTrai.Name = "btnXoayTrai";
+            this.btnXoayTrai.Size = new System.Drawing.Size(178, 22);
+            this.btnXoayTrai.StyleController = this.LayoutControl;
+            this.btnXoayTrai.TabIndex = 7;
+            this.btnXoayTrai.Text = "Xoay trái";
+            this.btnXoayTrai.Click += new System.EventHandler(this.btnXoayTrai_Click);
+            // 
+            // btnXoayDoc
+            // 
+            this.btnXoayDoc.Location = new System.Drawing.Point(829, 490);
+            this.btnXoayDoc.Name = "btnXoayDoc";
+            this.btnXoayDoc.Size = new System.Drawing.Size(359, 22);
+            this.btnXoayDoc.StyleController = this.LayoutControl;
+            this.btnXoayDoc.TabIndex = 6;
+            this.btnXoayDoc.Text = "Xoay dọc";
+            this.btnXoayDoc.Click += new System.EventHandler(this.btnXoayDoc_Click);
+            // 
+            // btnXoayPhai
+            // 
+            this.btnXoayPhai.Location = new System.Drawing.Point(1011, 464);
+            this.btnXoayPhai.Name = "btnXoayPhai";
+            this.btnXoayPhai.Size = new System.Drawing.Size(177, 22);
+            this.btnXoayPhai.StyleController = this.LayoutControl;
+            this.btnXoayPhai.TabIndex = 5;
+            this.btnXoayPhai.Text = "Xoay phải";
+            this.btnXoayPhai.Click += new System.EventHandler(this.btnXoayPhai_Click);
+            // 
+            // pictureEdit1
+            // 
+            this.pictureEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureEdit1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureEdit1.Location = new System.Drawing.Point(56, 23);
+            this.pictureEdit1.MaximumSize = new System.Drawing.Size(300, 300);
+            this.pictureEdit1.MenuManager = this.RibbonControl;
+            this.pictureEdit1.MinimumSize = new System.Drawing.Size(300, 300);
+            this.pictureEdit1.Name = "pictureEdit1";
+            this.pictureEdit1.Properties.AllowScrollViaMouseDrag = true;
+            this.pictureEdit1.Properties.AllowZoomOnMouseWheel = DevExpress.Utils.DefaultBoolean.True;
+            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit1.Properties.ZoomAccelerationFactor = 20D;
+            this.pictureEdit1.Properties.ZoomingOperationMode = DevExpress.XtraEditors.Repository.ZoomingOperationMode.MouseWheel;
+            this.pictureEdit1.Size = new System.Drawing.Size(300, 300);
+            this.pictureEdit1.TabIndex = 4;
             // 
             // gridControl
             // 
@@ -1134,10 +1270,11 @@ namespace CafePrintter.Forms
             this.gridControl.MainView = this.winExplorerView;
             this.gridControl.MenuManager = this.RibbonControl;
             this.gridControl.Name = "gridControl";
-            this.gridControl.Size = new System.Drawing.Size(908, 538);
+            this.gridControl.Size = new System.Drawing.Size(806, 532);
             this.gridControl.TabIndex = 2;
             this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.winExplorerView});
+            this.gridControl.DataSourceChanged += new System.EventHandler(this.gridControl_DataSourceChanged);
             // 
             // winExplorerView
             // 
@@ -1212,6 +1349,16 @@ namespace CafePrintter.Forms
             this.columnImage.Visible = true;
             this.columnImage.VisibleIndex = 0;
             // 
+            // liNavPaneRight
+            // 
+            this.liNavPaneRight.Control = this.navBar;
+            this.liNavPaneRight.CustomizationFormText = "LayoutControlItemNavigationPaneRight";
+            this.liNavPaneRight.Location = new System.Drawing.Point(671, 285);
+            this.liNavPaneRight.Name = "LayoutControlItemNavigationPaneRight";
+            this.liNavPaneRight.Size = new System.Drawing.Size(541, 257);
+            this.liNavPaneRight.TextSize = new System.Drawing.Size(0, 0);
+            this.liNavPaneRight.TextVisible = false;
+            // 
             // LayoutControlMainGroup
             // 
             this.LayoutControlMainGroup.CustomizationFormText = "Root";
@@ -1220,12 +1367,15 @@ namespace CafePrintter.Forms
             this.LayoutControlMainGroup.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.LayoutControlItemExplorerView,
             this.SplitterItem1,
-            this.liNavPaneRight,
-            this.layoutControlItem1});
+            this.layoutControlGroup1,
+            this.layoutControlItem6,
+            this.layoutControlItem7,
+            this.emptySpaceItem1,
+            this.layoutControlItem9});
             this.LayoutControlMainGroup.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlMainGroup.Name = "Root";
             this.LayoutControlMainGroup.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 10, 10, 10);
-            this.LayoutControlMainGroup.Size = new System.Drawing.Size(1212, 542);
+            this.LayoutControlMainGroup.Size = new System.Drawing.Size(1202, 536);
             this.LayoutControlMainGroup.TextVisible = false;
             // 
             // LayoutControlItemExplorerView
@@ -1234,7 +1384,7 @@ namespace CafePrintter.Forms
             this.LayoutControlItemExplorerView.CustomizationFormText = "LayoutControlItemExplorerView";
             this.LayoutControlItemExplorerView.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlItemExplorerView.Name = "LayoutControlItemExplorerView";
-            this.LayoutControlItemExplorerView.Size = new System.Drawing.Size(912, 542);
+            this.LayoutControlItemExplorerView.Size = new System.Drawing.Size(810, 536);
             this.LayoutControlItemExplorerView.TextSize = new System.Drawing.Size(0, 0);
             this.LayoutControlItemExplorerView.TextVisible = false;
             // 
@@ -1242,19 +1392,93 @@ namespace CafePrintter.Forms
             // 
             this.SplitterItem1.AllowHotTrack = true;
             this.SplitterItem1.CustomizationFormText = "SplitterItem1";
-            this.SplitterItem1.Location = new System.Drawing.Point(912, 285);
+            this.SplitterItem1.Location = new System.Drawing.Point(810, 0);
             this.SplitterItem1.Name = "SplitterItem1";
-            this.SplitterItem1.Size = new System.Drawing.Size(5, 257);
+            this.SplitterItem1.Size = new System.Drawing.Size(5, 536);
             // 
-            // liNavPaneRight
+            // layoutControlGroup1
             // 
-            this.liNavPaneRight.Control = this.navBar;
-            this.liNavPaneRight.CustomizationFormText = "LayoutControlItemNavigationPaneRight";
-            this.liNavPaneRight.Location = new System.Drawing.Point(917, 285);
-            this.liNavPaneRight.Name = "LayoutControlItemNavigationPaneRight";
-            this.liNavPaneRight.Size = new System.Drawing.Size(295, 257);
-            this.liNavPaneRight.TextSize = new System.Drawing.Size(0, 0);
-            this.liNavPaneRight.TextVisible = false;
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem3,
+            this.layoutControlItem4,
+            this.layoutControlItem5,
+            this.layoutControlItem2,
+            this.layoutControlItem8});
+            this.layoutControlGroup1.Location = new System.Drawing.Point(815, 382);
+            this.layoutControlGroup1.Name = "layoutControlGroup1";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(387, 144);
+            this.layoutControlGroup1.Text = "Điều chỉnh";
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.btnXoayDoc;
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 76);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(363, 26);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.btnXoayTrai;
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 50);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(182, 26);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem4.TextVisible = false;
+            // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.btnXoayNgang;
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(363, 26);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextVisible = false;
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.btnXoayPhai;
+            this.layoutControlItem2.Location = new System.Drawing.Point(182, 50);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(181, 26);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextVisible = false;
+            // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.lueSizeMode;
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(363, 24);
+            this.layoutControlItem8.Text = "Loại hiển thị";
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(57, 13);
+            // 
+            // layoutControlItem6
+            // 
+            this.layoutControlItem6.Control = this.btnPrint;
+            this.layoutControlItem6.Location = new System.Drawing.Point(815, 347);
+            this.layoutControlItem6.Name = "layoutControlItem6";
+            this.layoutControlItem6.Size = new System.Drawing.Size(194, 35);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem6.TextVisible = false;
+            // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.Control = this.btnCropImage;
+            this.layoutControlItem7.Location = new System.Drawing.Point(1009, 347);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(193, 35);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem7.TextVisible = false;
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(815, 526);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(387, 10);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // itemPopupMenu
             // 
@@ -1273,25 +1497,22 @@ namespace CafePrintter.Forms
             this.navigationMenu.Name = "navigationMenu";
             this.navigationMenu.Ribbon = this.RibbonControl;
             // 
-            // pictureEdit1
+            // panelControl1
             // 
-            this.pictureEdit1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pictureEdit1.Location = new System.Drawing.Point(1010, 2);
-            this.pictureEdit1.MenuManager = this.RibbonControl;
-            this.pictureEdit1.Name = "pictureEdit1";
-            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit1.Properties.ZoomAccelerationFactor = 1D;
-            this.pictureEdit1.Size = new System.Drawing.Size(200, 281);
-            this.pictureEdit1.StyleController = this.LayoutControl;
-            this.pictureEdit1.TabIndex = 4;
+            this.panelControl1.Controls.Add(this.pictureEdit1);
+            this.panelControl1.Location = new System.Drawing.Point(817, 2);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(383, 343);
+            this.panelControl1.TabIndex = 10;
             // 
-            // layoutControlItem1
+            // layoutControlItem9
             // 
-            this.layoutControlItem1.Control = this.pictureEdit1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(912, 0);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(300, 285);
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(93, 13);
+            this.layoutControlItem9.Control = this.panelControl1;
+            this.layoutControlItem9.Location = new System.Drawing.Point(815, 0);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(387, 347);
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem9.TextVisible = false;
             // 
             // ExplorerView
             // 
@@ -1324,16 +1545,28 @@ namespace CafePrintter.Forms
             this.contentPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).EndInit();
             this.LayoutControl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lueSizeMode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.winExplorerView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.liNavPaneRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlMainGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemExplorerView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitterItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.liNavPaneRight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemPopupMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationMenu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1447,7 +1680,24 @@ namespace CafePrintter.Forms
         private LabelControl btnNavigationHistory;
         private PopupMenu navigationMenu;
         private PictureEdit pictureEdit1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private SimpleButton btnXoayNgang;
+        private SimpleButton btnXoayTrai;
+        private SimpleButton btnXoayDoc;
+        private SimpleButton btnXoayPhai;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private SimpleButton btnPrint;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
+        private SimpleButton btnCropImage;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private LookUpEdit lueSizeMode;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
+        private PanelControl panelControl1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
     }
 }
 

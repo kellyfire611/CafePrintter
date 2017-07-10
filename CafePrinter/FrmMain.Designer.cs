@@ -63,11 +63,8 @@
             this.simpleSeparator1 = new DevExpress.XtraLayout.SimpleSeparator();
             this.backstageViewTabItem1 = new DevExpress.XtraBars.Ribbon.BackstageViewTabItem();
             this.backstageViewTabItem2 = new DevExpress.XtraBars.Ribbon.BackstageViewTabItem();
-            this.bbiSave = new DevExpress.XtraBars.BarButtonItem();
-            this.bbiSaveAndClose = new DevExpress.XtraBars.BarButtonItem();
-            this.bbiSaveAndNew = new DevExpress.XtraBars.BarButtonItem();
-            this.bbiReset = new DevExpress.XtraBars.BarButtonItem();
-            this.bbiDelete = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiPrinter = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiSetting = new DevExpress.XtraBars.BarButtonItem();
             this.bbiClose = new DevExpress.XtraBars.BarButtonItem();
             this.mainRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.mainRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -109,11 +106,8 @@
             this.mainRibbonControl.ExpandCollapseItem.Id = 0;
             this.mainRibbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.mainRibbonControl.ExpandCollapseItem,
-            this.bbiSave,
-            this.bbiSaveAndClose,
-            this.bbiSaveAndNew,
-            this.bbiReset,
-            this.bbiDelete,
+            this.bbiPrinter,
+            this.bbiSetting,
             this.bbiClose});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.MaxItemId = 1;
@@ -455,43 +449,21 @@
             this.backstageViewTabItem2.Name = "backstageViewTabItem2";
             this.backstageViewTabItem2.Selected = true;
             // 
-            // bbiSave
+            // bbiPrinter
             // 
-            this.bbiSave.Caption = "Save";
-            this.bbiSave.Id = 2;
-            this.bbiSave.ImageOptions.ImageUri.Uri = "Save";
-            this.bbiSave.Name = "bbiSave";
-            this.bbiSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSave_ItemClick);
+            this.bbiPrinter.Caption = "Printer";
+            this.bbiPrinter.Id = 2;
+            this.bbiPrinter.ImageOptions.ImageUri.Uri = "Save";
+            this.bbiPrinter.Name = "bbiPrinter";
+            this.bbiPrinter.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiPrinter_ItemClick);
             // 
-            // bbiSaveAndClose
+            // bbiSetting
             // 
-            this.bbiSaveAndClose.Caption = "Save And Close";
-            this.bbiSaveAndClose.Id = 3;
-            this.bbiSaveAndClose.ImageOptions.ImageUri.Uri = "SaveAndClose";
-            this.bbiSaveAndClose.Name = "bbiSaveAndClose";
-            this.bbiSaveAndClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSaveAndClose_ItemClick);
-            // 
-            // bbiSaveAndNew
-            // 
-            this.bbiSaveAndNew.Caption = "Save And New";
-            this.bbiSaveAndNew.Id = 4;
-            this.bbiSaveAndNew.ImageOptions.ImageUri.Uri = "SaveAndNew";
-            this.bbiSaveAndNew.Name = "bbiSaveAndNew";
-            this.bbiSaveAndNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSaveAndNew_ItemClick);
-            // 
-            // bbiReset
-            // 
-            this.bbiReset.Caption = "Reset Changes";
-            this.bbiReset.Id = 5;
-            this.bbiReset.ImageOptions.ImageUri.Uri = "Reset";
-            this.bbiReset.Name = "bbiReset";
-            // 
-            // bbiDelete
-            // 
-            this.bbiDelete.Caption = "Delete";
-            this.bbiDelete.Id = 6;
-            this.bbiDelete.ImageOptions.ImageUri.Uri = "Delete";
-            this.bbiDelete.Name = "bbiDelete";
+            this.bbiSetting.Caption = "Cấu hình";
+            this.bbiSetting.Id = 3;
+            this.bbiSetting.ImageOptions.ImageUri.Uri = "SaveAndClose";
+            this.bbiSetting.Name = "bbiSetting";
+            this.bbiSetting.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSetting_ItemClick);
             // 
             // bbiClose
             // 
@@ -513,20 +485,17 @@
             // mainRibbonPageGroup
             // 
             this.mainRibbonPageGroup.AllowTextClipping = false;
-            this.mainRibbonPageGroup.ItemLinks.Add(this.bbiSave);
-            this.mainRibbonPageGroup.ItemLinks.Add(this.bbiSaveAndClose);
-            this.mainRibbonPageGroup.ItemLinks.Add(this.bbiSaveAndNew);
-            this.mainRibbonPageGroup.ItemLinks.Add(this.bbiReset);
-            this.mainRibbonPageGroup.ItemLinks.Add(this.bbiDelete);
+            this.mainRibbonPageGroup.ItemLinks.Add(this.bbiPrinter);
+            this.mainRibbonPageGroup.ItemLinks.Add(this.bbiSetting);
             this.mainRibbonPageGroup.Name = "mainRibbonPageGroup";
             this.mainRibbonPageGroup.ShowCaptionButton = false;
-            this.mainRibbonPageGroup.Text = "Tasks";
+            this.mainRibbonPageGroup.Text = "Tác vụ";
             // 
             // ribbonPageGroup1
             // 
             this.ribbonPageGroup1.ItemLinks.Add(this.bbiClose);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.Text = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "Hệ thống";
             // 
             // FrmMain
             // 
@@ -575,11 +544,8 @@
         private DevExpress.XtraBars.Ribbon.RibbonControl mainRibbonControl;
         private DevExpress.XtraBars.Ribbon.RibbonPage mainRibbonPage;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup mainRibbonPageGroup;
-        private DevExpress.XtraBars.BarButtonItem bbiSave;
-        private DevExpress.XtraBars.BarButtonItem bbiSaveAndClose;
-        private DevExpress.XtraBars.BarButtonItem bbiSaveAndNew;
-        private DevExpress.XtraBars.BarButtonItem bbiReset;
-        private DevExpress.XtraBars.BarButtonItem bbiDelete;
+        private DevExpress.XtraBars.BarButtonItem bbiPrinter;
+        private DevExpress.XtraBars.BarButtonItem bbiSetting;
         private DevExpress.XtraBars.BarButtonItem bbiClose;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraBars.Ribbon.BackstageViewControl backstageViewControl1;

@@ -15,6 +15,12 @@ using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraNavBar;
 using DevExpress.XtraGrid.Views.WinExplorer;
 using CafePrintter.Base;
+using DevExpress.Data.Filtering;
+using CafePrintter.Global;
+using CafePrinter.Helper;
+using System.Drawing.Printing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 
 namespace CafePrintter.Forms
 {
@@ -23,6 +29,21 @@ namespace CafePrintter.Forms
         string currentPath;
         public ExplorerView() {
             InitializeComponent();
+
+            // Load data
+            GlobalSetting.Data = JsonHelper.GetData();
+
+            if (GlobalSetting.Data != null)
+            {
+                btnPrint.Text = String.Format("{0}({1})", "In", GlobalSetting.Data.printer_counter);
+            }
+
+            Dictionary<int, string> sizemodeEnums = Enum.GetValues(typeof(DevExpress.XtraEditors.Controls.PictureSizeMode))
+                .Cast<DevExpress.XtraEditors.Controls.PictureSizeMode>().ToDictionary(x => (int)x, x => x.ToString());
+
+            lueSizeMode.Properties.ValueMember = "Key";
+            lueSizeMode.Properties.DisplayMember = " Value";
+            lueSizeMode.Properties.DataSource = sizemodeEnums;
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -315,6 +336,151 @@ namespace CafePrintter.Forms
         }
         void IFileSystemNavigationSupports.UpdatePath(string path) {
             BreadCrumb.Path = path;
+        }
+
+        private void btnXoayTrai_Click(object sender, EventArgs e)
+        {
+            pictureEdit1.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            pictureEdit1.Refresh();
+        }
+
+        private void btnXoayPhai_Click(object sender, EventArgs e)
+        {
+            pictureEdit1.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            pictureEdit1.Refresh();
+        }
+
+        private void btnXoayNgang_Click(object sender, EventArgs e)
+        {
+            pictureEdit1.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            pictureEdit1.Refresh();
+        }
+
+        private void btnXoayDoc_Click(object sender, EventArgs e)
+        {
+            pictureEdit1.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            pictureEdit1.Refresh();
+        }
+
+        private void gridControl_DataSourceChanged(object sender, EventArgs e)
+        {
+            columnName.FilterInfo = new DevExpress.XtraGrid.Columns.ColumnFilterInfo(BinaryOperator.Or("LIKE %png%", "LIKE %jpg%"));
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if(GlobalSetting.Data != null)
+            {
+                Print(GlobalSetting.Data.printer_name);
+
+                // Cập nhật giao diện
+                if (GlobalSetting.Data != null)
+                {
+                    GlobalSetting.Data.printer_counter++;
+                }
+
+                string jsonData = JsonHelper.DataToJson(GlobalSetting.Data);
+                JsonHelper.SaveAndRefresh(jsonData);
+
+                btnPrint.Text = String.Format("{0}({1})", "In", GlobalSetting.Data.printer_counter);
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng cấu hình máy in.");
+            }
+        }
+
+        public void Print(string printerName)
+        {
+            try
+            {
+                var tempFile = Path.GetTempFileName();
+                pictureEdit1.Image.Save(tempFile);
+                if (string.IsNullOrWhiteSpace(tempFile)) return; // Prevents execution of below statements if filename is not selected.
+
+                PrintDocument pd = new PrintDocument();
+
+                //Disable the printing document pop-up dialog shown during printing.
+                PrintController printController = new StandardPrintController();
+                pd.PrintController = printController;
+
+                //For testing only: Hardcoded set paper size to particular paper.
+                //pd.PrinterSettings.DefaultPageSettings.PaperSize = new PaperSize("Custom 6x4", 720, 478);
+                //pd.DefaultPageSettings.PaperSize = new PaperSize("Custom 6x4", 720, 478);
+
+                pd.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
+                pd.PrinterSettings.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
+
+                pd.PrintPage += (sndr, args) =>
+                {
+                    System.Drawing.Image i = System.Drawing.Image.FromFile(tempFile);
+
+                    //Adjust the size of the image to the page to print the full image without loosing any part of the image.
+                    System.Drawing.Rectangle m = args.MarginBounds;
+
+                    //Logic below maintains Aspect Ratio.
+                    if ((double)i.Width / (double)i.Height > (double)m.Width / (double)m.Height) // image is wider
+                    {
+                        m.Height = (int)((double)i.Height / (double)i.Width * (double)m.Width);
+                    }
+                    else
+                    {
+                        m.Width = (int)((double)i.Width / (double)i.Height * (double)m.Height);
+                    }
+                    //Calculating optimal orientation.
+                    pd.DefaultPageSettings.Landscape = m.Width > m.Height;
+                    //Putting image in center of page.
+                    m.Y = (int)((((System.Drawing.Printing.PrintDocument)(sndr)).DefaultPageSettings.PaperSize.Height - m.Height) / 2);
+                    m.X = (int)((((System.Drawing.Printing.PrintDocument)(sndr)).DefaultPageSettings.PaperSize.Width - m.Width) / 2);
+                    args.Graphics.DrawImage(i, m);
+                };
+                pd.Print();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+            }
+        }
+
+        private void btnCropImage_Click(object sender, EventArgs e)
+        {
+            Image srcImage = pictureEdit1.Image;
+            Image dstImage = CropToCircle(srcImage, Color.CadetBlue);
+            //dstImage.Save(@"080cropped.jpg", ImageFormat.Jpeg);
+            pictureEdit1.Image = dstImage;
+            pictureEdit1.Refresh();
+
+            
+        }
+
+        public Image CropToCircle(Image srcImage, Color backGround)
+        {
+            Image dstImage = new Bitmap(srcImage.Width, srcImage.Height, srcImage.PixelFormat);
+            Graphics g = Graphics.FromImage(dstImage);
+            using (Brush br = new SolidBrush(backGround))
+            {
+                g.FillRectangle(br, 0, 0, pictureEdit1.Width, pictureEdit1.Height);
+            }
+            GraphicsPath path = new GraphicsPath();
+            //path.AddEllipse(0, 0, dstImage.Width, dstImage.Height);
+            //path.AddEllipse(0, 0, pictureEdit1.Width, pictureEdit1.Height);
+            float radius = dstImage.Width / 2;
+            Point center = new Point(dstImage.Width / 2, dstImage.Height / 2);
+            path.AddEllipse(new RectangleF(center.X - radius, center.Y - radius, radius * 2, radius * 2));
+            //g.DrawPath(path);
+
+            g.SetClip(path);
+            g.DrawImage(srcImage, 0, 0);
+
+            return dstImage;
+        }
+
+        private void lueSizeMode_EditValueChanged(object sender, EventArgs e)
+        {
+            pictureEdit1.Properties.SizeMode = (DevExpress.XtraEditors.Controls.PictureSizeMode)(lueSizeMode.EditValue);
         }
         #endregion
         //#region ReportGeneration
