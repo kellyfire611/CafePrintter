@@ -511,6 +511,7 @@
             this.Ribbon = this.mainRibbonControl;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cafe Printer";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).EndInit();
             this.backstageViewControl1.ResumeLayout(false);

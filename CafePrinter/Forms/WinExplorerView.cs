@@ -42,6 +42,7 @@ namespace CafePrintter.Forms
             if (GlobalSetting.Data != null)
             {
                 btnPrint.Text = String.Format("{0}({1})", "In", GlobalSetting.Data.printer_counter);
+                lblCounter.Text = String.Format("{0} ({1})", "Đã in", GlobalSetting.Data.printer_counter);
                 currentPath = GlobalSetting.Data.folder_path;
             }
 
@@ -352,26 +353,26 @@ namespace CafePrintter.Forms
 
         private void btnXoayTrai_Click(object sender, EventArgs e)
         {
-            pictureEdit1.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            pictureEdit1.Refresh();
+            pictureEdit2.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            pictureEdit2.Refresh();
         }
 
         private void btnXoayPhai_Click(object sender, EventArgs e)
         {
-            pictureEdit1.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
-            pictureEdit1.Refresh();
+            pictureEdit2.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            pictureEdit2.Refresh();
         }
 
         private void btnXoayNgang_Click(object sender, EventArgs e)
         {
-            pictureEdit1.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
-            pictureEdit1.Refresh();
+            pictureEdit2.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            pictureEdit2.Refresh();
         }
 
         private void btnXoayDoc_Click(object sender, EventArgs e)
         {
-            pictureEdit1.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
-            pictureEdit1.Refresh();
+            pictureEdit2.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            pictureEdit2.Refresh();
         }
 
         private void gridControl_DataSourceChanged(object sender, EventArgs e)
@@ -395,6 +396,7 @@ namespace CafePrintter.Forms
                 JsonHelper.SaveAndRefresh(jsonData);
 
                 btnPrint.Text = String.Format("{0}({1})", "In", GlobalSetting.Data.printer_counter);
+                lblCounter.Text = String.Format("{0} ({1})", "Đã in", GlobalSetting.Data.printer_counter);
             }
             else
             {
@@ -407,7 +409,7 @@ namespace CafePrintter.Forms
             try
             {
                 var tempFile = Path.GetTempFileName();
-                pictureEdit1.Image.Save(tempFile);
+                pictureEdit2.Image.Save(tempFile);
                 if (string.IsNullOrWhiteSpace(tempFile)) return; // Prevents execution of below statements if filename is not selected.
 
                 PrintDocument pd = new PrintDocument();
@@ -459,9 +461,11 @@ namespace CafePrintter.Forms
 
         private void btnCropImage_Click(object sender, EventArgs e)
         {
-            Image srcImage = pictureEdit1.Image;
-            Image dstImage = CropToCircle(srcImage, Color.CadetBlue);
-            dstImage.Save(@"080cropped.jpg", ImageFormat.Jpeg);
+            pictureEdit2.EditValue = null;
+            
+            //Image srcImage = pictureEdit1.Image;
+            //Image dstImage = CropToCircle(srcImage, Color.CadetBlue);
+            //dstImage.Save(@"080cropped.jpg", ImageFormat.Jpeg);
             //pictureEdit1.Image = dstImage;
             //pictureEdit1.Refresh();
 
@@ -569,9 +573,9 @@ namespace CafePrintter.Forms
 
 
 
-            Image dstImage = new Bitmap(original.Width, original.Height, original.PixelFormat);
+            Bitmap dstImage = new Bitmap(original.Width, original.Height, original.PixelFormat);
             Graphics g = Graphics.FromImage(dstImage);
-               using (Brush br = new SolidBrush(Color.Black)) {
+               using (Brush br = new SolidBrush(Color.Plum)) {
                    g.FillRectangle(br, 0, 0, dstImage.Width, dstImage.Height);
                }
                GraphicsPath path = new GraphicsPath();
@@ -579,13 +583,14 @@ namespace CafePrintter.Forms
             path.AddEllipse(clipRect);
                g.SetClip(path);
                g.DrawImage(original, 0, 0);
-
+            dstImage.MakeTransparent(Color.Plum);
 
             //pictureEdit2.Image = ClipImage(pictureEdit1.Image, clipRect);
             //pictureEdit2.Refresh();
 
-            dstImage = ClipImage(dstImage, clipRect);
-            return dstImage;
+            Image img = new Bitmap(dstImage);
+            img = ClipImage(dstImage, clipRect);
+            return img;
                 
         }
 
@@ -751,7 +756,6 @@ namespace CafePrintter.Forms
 
         private void pictureEdit1_MouseDown(object sender, MouseEventArgs e)
         {
-
             PictureEdit edit = sender as PictureEdit;
             if ((e.Button == MouseButtons.Left ||
                (SystemInformation.MouseButtonsSwapped &&
@@ -781,28 +785,94 @@ namespace CafePrintter.Forms
                             break;
                     }
 
-                int scrollX = (edit.Controls[1] as DevExpress.XtraEditors.HScrollBar).Value;
-                int scrollY = (edit.Controls[0] as DevExpress.XtraEditors.VScrollBar).Value;
+                //int scrollX = (edit.Controls[1] as DevExpress.XtraEditors.HScrollBar).Value;
+                //int scrollY = (edit.Controls[0] as DevExpress.XtraEditors.VScrollBar).Value;
 
-                //int scrollX = edit.HScrollBar.Value;
-                //int scrollY = edit.VScrollBar.Value;
+                int scrollX = edit.HScrollBar.Value;
+                int scrollY = edit.VScrollBar.Value;
 
                 int x, y;
-                if (edit.Controls[1].Visible == true)
-                    //x = (int)((e.X + scrollX - vi.PictureScreenBounds.X) / zoomX);
-                    x = (int)((scrollX - vi.PictureScreenBounds.X) / zoomX);
+                //if (edit.Controls[1].Visible == true)
+                //    //x = (int)((e.X + scrollX - vi.PictureScreenBounds.X) / zoomX);
+                //    x = (int)((scrollX - vi.PictureScreenBounds.X) / zoomX);
+                //else
+                //    //x = (int)((e.X - vi.PictureScreenBounds.X) / zoomX);
+                //    x = (int)((vi.PictureScreenBounds.X) / zoomX);
+                //if (edit.Controls[0].Visible == true)
+                //    //y = (int)((e.Y + scrollY - vi.PictureScreenBounds.Y) / zoomY);
+                //    y = (int)((scrollY - vi.PictureScreenBounds.Y) / zoomY);
+                //else
+                //    //y = (int)((e.Y - vi.PictureScreenBounds.Y) / zoomY);
+                //    y = (int)((vi.PictureScreenBounds.Y) / zoomY);
+
+                x = (int)((scrollX - vi.PictureScreenBounds.X) / zoomX);
+                y = (int)((scrollY - vi.PictureScreenBounds.Y) / zoomY);
+
+
+                if (CheckBounds(x, y))
+                {
+                    //Graphics.FromImage(edit.Image).DrawRectangle(new Pen(Color.Red), x, y, 20, 20);
+
+                    clipRect = new RectangleF(x, y, vi.PictureScreenBounds.Width, vi.PictureScreenBounds.Height);
+                    edit.Refresh();
+                }
+            }
+        }
+
+        private void pictureEdit1_MouseUp(object sender, MouseEventArgs e)
+        {
+            PictureEdit edit = sender as PictureEdit;
+            if ((e.Button == MouseButtons.Left && edit.Image != null))
+            {
+                PictureEditViewInfo vi = edit.GetViewInfo() as PictureEditViewInfo;
+                double zoomX = 1.0, zoomY = 1.0;
+
+                if (ZoomPercentChanged && edit.Properties.SizeMode != PictureSizeMode.Squeeze)
+                    zoomX = zoomY = Convert.ToDouble(edit.Properties.ZoomPercent) / 100;
                 else
-                    //x = (int)((e.X - vi.PictureScreenBounds.X) / zoomX);
-                    x = (int)((vi.PictureScreenBounds.X) / zoomX);
-                if (edit.Controls[0].Visible == true)
-                    //y = (int)((e.Y + scrollY - vi.PictureScreenBounds.Y) / zoomY);
-                    y = (int)((scrollY - vi.PictureScreenBounds.Y) / zoomY);
-                else
-                    //y = (int)((e.Y - vi.PictureScreenBounds.Y) / zoomY);
-                    y = (int)((vi.PictureScreenBounds.Y) / zoomY);
+                    switch (edit.Properties.SizeMode)
+                    {
+                        case PictureSizeMode.Zoom:
+                        case PictureSizeMode.Squeeze:
+                            zoomX = zoomY = Convert.ToDouble(vi.PictureScreenBounds.Width / pictureEdit1.Image.Size.Width);
+                            break;
+                        case PictureSizeMode.Stretch:
+                            zoomX = Convert.ToDouble(vi.PictureScreenBounds.Width / pictureEdit1.Image.Size.Width);
+                            zoomY = Convert.ToDouble(vi.PictureScreenBounds.Height / pictureEdit1.Image.Size.Height);
+                            break;
+                        case PictureSizeMode.StretchHorizontal:
+                            zoomX = Convert.ToDouble(vi.PictureScreenBounds.Width / pictureEdit1.Image.Size.Width);
+                            break;
+                        case PictureSizeMode.StretchVertical:
+                            zoomY = zoomY = Convert.ToDouble(vi.PictureScreenBounds.Height / pictureEdit1.Image.Size.Height);
+                            break;
+                    }
+
+                //int scrollX = (edit.Controls[1] as DevExpress.XtraEditors.HScrollBar).Value;
+                //int scrollY = (edit.Controls[0] as DevExpress.XtraEditors.VScrollBar).Value;
+
+                int scrollX = edit.HScrollBar.Value;
+                int scrollY = edit.VScrollBar.Value;
+
+                int x, y;
+                //if (edit.Controls[1].Visible == true)
+                //    //x = (int)((e.X + scrollX - vi.PictureScreenBounds.X) / zoomX);
+                //    x = (int)((scrollX - vi.PictureScreenBounds.X) / zoomX);
+                //else
+                //    //x = (int)((e.X - vi.PictureScreenBounds.X) / zoomX);
+                //    x = (int)((vi.PictureScreenBounds.X) / zoomX);
+                //if (edit.Controls[0].Visible == true)
+                //    //y = (int)((e.Y + scrollY - vi.PictureScreenBounds.Y) / zoomY);
+                //    y = (int)((scrollY - vi.PictureScreenBounds.Y) / zoomY);
+                //else
+                //    //y = (int)((e.Y - vi.PictureScreenBounds.Y) / zoomY);
+                //    y = (int)((vi.PictureScreenBounds.Y) / zoomY);
 
                 //x = (int)((e.X + scrollX - vi.PictureScreenBounds.X) / zoomX);
                 //y = (int)((e.Y + scrollY - vi.PictureScreenBounds.Y) / zoomY);
+
+                x = (int)((scrollX - vi.PictureScreenBounds.X) / zoomX);
+                y = (int)((scrollY - vi.PictureScreenBounds.Y) / zoomY);
 
 
                 if (CheckBounds(x, y))
