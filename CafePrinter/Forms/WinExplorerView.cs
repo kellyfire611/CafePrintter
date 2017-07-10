@@ -21,11 +21,17 @@ using CafePrinter.Helper;
 using System.Drawing.Printing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using DevExpress.XtraEditors.ViewInfo;
+using DevExpress.XtraEditors.Controls;
 
 namespace CafePrintter.Forms
 {
     public partial class ExplorerView : FrmChildBase, IFileSystemNavigationSupports
     {
+        private RectangleF clipRect_Ori = new RectangleF(0, 0, 0, 0);
+        private RectangleF clipRect = new RectangleF(0, 0, 0, 0);
+        bool ZoomPercentChanged;
+
         string currentPath;
         public ExplorerView() {
             InitializeComponent();
@@ -36,6 +42,7 @@ namespace CafePrintter.Forms
             if (GlobalSetting.Data != null)
             {
                 btnPrint.Text = String.Format("{0}({1})", "In", GlobalSetting.Data.printer_counter);
+                currentPath = GlobalSetting.Data.folder_path;
             }
 
             Dictionary<int, string> sizemodeEnums = Enum.GetValues(typeof(DevExpress.XtraEditors.Controls.PictureSizeMode))
@@ -44,6 +51,11 @@ namespace CafePrintter.Forms
             lueSizeMode.Properties.ValueMember = "Key";
             lueSizeMode.Properties.DisplayMember = " Value";
             lueSizeMode.Properties.DataSource = sizemodeEnums;
+
+            //clipRect_Ori = new Rectangle(0, 0, pictureEdit1.Width, pictureEdit1.Height);
+            //clipRect = new Rectangle(0, 0, pictureEdit1.Width, pictureEdit1.Height);
+            clipRect_Ori = pictureEdit1.DisplayRectangle;
+            clipRect = pictureEdit1.DisplayRectangle;
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -58,7 +70,7 @@ namespace CafePrintter.Forms
             UpdateView();
         }
         void InitializeBreadCrumb() {
-            this.currentPath = StartupPath;
+            //this.currentPath = StartupPath;
             BreadCrumb.Path = this.currentPath;
             foreach(DriveInfo driveInfo in FileSystemHelper.GetFixedDrives()) {
                 BreadCrumb.Properties.History.Add(new BreadCrumbHistoryItem(driveInfo.RootDirectory.ToString()));
@@ -449,31 +461,44 @@ namespace CafePrintter.Forms
         {
             Image srcImage = pictureEdit1.Image;
             Image dstImage = CropToCircle(srcImage, Color.CadetBlue);
-            //dstImage.Save(@"080cropped.jpg", ImageFormat.Jpeg);
-            pictureEdit1.Image = dstImage;
-            pictureEdit1.Refresh();
+            dstImage.Save(@"080cropped.jpg", ImageFormat.Jpeg);
+            //pictureEdit1.Image = dstImage;
+            //pictureEdit1.Refresh();
 
-            
+
+
+            pictureEdit2.Image = ClipToCircle(pictureEdit1.Image, new PointF(1, 1), 0.5F);
+            pictureEdit2.Refresh();
+
+            //pictureEdit2.Image = ClipImage(pictureEdit1.Image, clipRect);
+            //pictureEdit2.Refresh();
         }
+
+        
 
         public Image CropToCircle(Image srcImage, Color backGround)
         {
-            Image dstImage = new Bitmap(srcImage.Width, srcImage.Height, srcImage.PixelFormat);
-            Graphics g = Graphics.FromImage(dstImage);
-            using (Brush br = new SolidBrush(backGround))
-            {
-                g.FillRectangle(br, 0, 0, pictureEdit1.Width, pictureEdit1.Height);
-            }
-            GraphicsPath path = new GraphicsPath();
-            //path.AddEllipse(0, 0, dstImage.Width, dstImage.Height);
-            //path.AddEllipse(0, 0, pictureEdit1.Width, pictureEdit1.Height);
-            float radius = dstImage.Width / 2;
-            Point center = new Point(dstImage.Width / 2, dstImage.Height / 2);
-            path.AddEllipse(new RectangleF(center.X - radius, center.Y - radius, radius * 2, radius * 2));
-            //g.DrawPath(path);
+            //Image dstImage = new Bitmap(srcImage.Width, srcImage.Height, srcImage.PixelFormat);
+            //Graphics g = Graphics.FromImage(dstImage);
+            //using (Brush br = new SolidBrush(backGround))
+            //{
+            //    g.FillRectangle(br, 0, 0, pictureEdit1.Width, pictureEdit1.Height);
+            //}
+            //GraphicsPath path = new GraphicsPath();
+            ////path.AddEllipse(0, 0, dstImage.Width, dstImage.Height);
+            ////path.AddEllipse(0, 0, pictureEdit1.Width, pictureEdit1.Height);
+            //float radius = dstImage.Width / 2;
+            //Point center = new Point(dstImage.Width / 2, dstImage.Height / 2);
+            //path.AddEllipse(new RectangleF(center.X - radius, center.Y - radius, radius * 2, radius * 2));
+            //g.DrawPath(Pens.Red, path);
 
+            ////g.SetClip(path);
+            //g.DrawImage(srcImage, 0, 0);
+
+
+            Image dstImage = new Bitmap(pictureEdit1.Width, pictureEdit1.Height, srcImage.PixelFormat);
+            Graphics g = Graphics.FromImage(dstImage);
             g.SetClip(path);
-            g.DrawImage(srcImage, 0, 0);
 
             return dstImage;
         }
@@ -482,9 +507,312 @@ namespace CafePrintter.Forms
         {
             pictureEdit1.Properties.SizeMode = (DevExpress.XtraEditors.Controls.PictureSizeMode)(lueSizeMode.EditValue);
         }
+
+        float radius = 0;
+        PointF center = new PointF(0, 0);
+        GraphicsPath path = null;
+        private void pictureEdit1_Paint(object sender, PaintEventArgs e)
+        {
+            //if (pictureEdit1.Image != null)
+            {
+                //if (Rect != null && Rect.Width > 0 && Rect.Height > 0)
+                //{
+                //    e.Graphics.FillRectangle(selectionBrush, Rect);
+                //}
+
+                //using (Brush br = new SolidBrush(Color.Black))
+                //{
+                //    e.Graphics.FillRectangle(br, 0, 0, pictureEdit1.Width, pictureEdit1.Height);
+                //}
+
+                radius = pictureEdit1.Width / 2;
+                center = new Point(pictureEdit1.Width / 2, pictureEdit1.Height / 2);
+                path = new GraphicsPath();
+                //path.AddEllipse(new RectangleF(center.X - radius, center.Y - radius, radius * 2, radius * 2));
+                path.AddEllipse(clipRect_Ori);
+                e.Graphics.DrawPath(Pens.Red, path);
+            }
+
+            //Clip Rectangle
+            //e.Graphics.DrawRectangle(Pens.Lime, clipRect_Ori.X, clipRect_Ori.Y, clipRect_Ori.Width, clipRect_Ori.Height);
+        }
         #endregion
         //#region ReportGeneration
         //public override bool AllowGenerateReport { get { return false; } }
         //#endregion
+
+
+        
+
+
+        public Image ClipToCircle(Image original, PointF center, float radius)
+        {
+            //Bitmap copy = new Bitmap(original);
+            //using (Graphics g = Graphics.FromImage(copy))
+            //{
+            //    //RectangleF r = new RectangleF(center.X - radius, center.Y - radius, radius * 2, radius * 2);
+            //    GraphicsPath path = new GraphicsPath();
+            //    path.AddEllipse(clipRect);
+            //    //g.Clip = new Region(path);
+
+            //    //g.DrawImage(original, 0, 0);
+            //    g.DrawPath(Pens.Red, path);
+            //    g.SetClip(path);
+            //    //g.DrawImage(original, 0, 0);
+
+
+
+
+
+            //    return (Image)copy;
+            //}
+
+
+
+            Image dstImage = new Bitmap(original.Width, original.Height, original.PixelFormat);
+            Graphics g = Graphics.FromImage(dstImage);
+               using (Brush br = new SolidBrush(Color.Black)) {
+                   g.FillRectangle(br, 0, 0, dstImage.Width, dstImage.Height);
+               }
+               GraphicsPath path = new GraphicsPath();
+            //path.AddEllipse(0, 0, dstImage.Width, dstImage.Height);
+            path.AddEllipse(clipRect);
+               g.SetClip(path);
+               g.DrawImage(original, 0, 0);
+
+
+            //pictureEdit2.Image = ClipImage(pictureEdit1.Image, clipRect);
+            //pictureEdit2.Refresh();
+
+            dstImage = ClipImage(dstImage, clipRect);
+            return dstImage;
+                
+        }
+
+        /// <summary>
+        /// Returns a clipped area of an image.
+        /// </summary>
+        private Image ClipImage(Image originalImg, RectangleF clipRectangle)
+        {
+            Bitmap clippedBmp = new Bitmap((int)clipRectangle.Width, (int)clipRectangle.Height);
+
+            using (Graphics g = Graphics.FromImage(clippedBmp))
+            {
+                g.DrawImage(originalImg,
+                            new Rectangle(0, 0, (int)clipRectangle.Width, (int)clipRectangle.Height),
+                            clipRectangle,
+                            GraphicsUnit.Pixel);
+            }
+
+            return (Image)clippedBmp;
+        }
+
+        private void pictureEdit1_MouseMove(object sender, MouseEventArgs e)
+        {
+            ////Handles the click-dragging logic for the clipping rectangle visual
+            //if (e.Button == MouseButtons.Left ||
+            //   (SystemInformation.MouseButtonsSwapped &&
+            //    e.Button == MouseButtons.Right))
+            //{
+            //    Point topLeft = new Point(clipRect.Left, clipRect.Top);
+            //    Point topRight = new Point(clipRect.Right, clipRect.Top);
+            //    Point bottomLeft = new Point(clipRect.Left, clipRect.Bottom);
+            //    Point bottomRight = new Point(clipRect.Right, clipRect.Bottom);
+
+            //    Point mouse = new Point(e.X, e.Y);
+
+            //    int threshold = 15;
+
+            //    //Act on the closest point to the cursor
+            //    if (GetDistance(mouse, topLeft) <= threshold)
+            //    {
+            //        topLeft = mouse;
+            //        bottomLeft.X = topLeft.X;
+            //        topRight.Y = topLeft.Y;
+            //    }
+            //    else if (GetDistance(mouse, topRight) <= threshold)
+            //    {
+            //        topRight = mouse;
+            //        bottomRight.X = topRight.X;
+            //        topLeft.Y = topRight.Y;
+            //    }
+            //    else if (GetDistance(mouse, bottomLeft) <= threshold)
+            //    {
+            //        bottomLeft = mouse;
+            //        topLeft.X = bottomLeft.X;
+            //        bottomRight.Y = bottomLeft.Y;
+            //    }
+            //    else if (GetDistance(mouse, bottomRight) <= threshold)
+            //    {
+            //        bottomRight = mouse;
+            //        topRight.X = bottomRight.X;
+            //        bottomLeft.Y = bottomRight.Y;
+            //    }
+            //    else if (clipRect.Contains(mouse))
+            //    {
+            //        topLeft.X = mouse.X - (clipRect.Width / 2);
+            //        topLeft.Y = mouse.Y - (clipRect.Height / 2);
+
+            //        topRight.X = mouse.X + (clipRect.Width / 2);
+            //        topRight.Y = topLeft.Y;
+
+            //        bottomLeft.X = topLeft.X;
+            //        bottomLeft.Y = mouse.Y + (clipRect.Height / 2);
+
+            //        bottomRight.X = topRight.X;
+            //        bottomRight.Y = bottomLeft.Y;
+            //    }
+
+            //    //Update the clip rectangle
+            //    int width = topRight.X - topLeft.X;
+            //    int height = bottomLeft.Y - topLeft.Y;
+            //    clipRect = new Rectangle(topLeft.X, topLeft.Y, width, height);
+
+            //    //Force redraw
+            //    this.Refresh();
+
+            //}
+
+
+            //PictureEdit edit = sender as PictureEdit;
+            //if ((e.Button == MouseButtons.Left ||
+            //   (SystemInformation.MouseButtonsSwapped &&
+            //    e.Button == MouseButtons.Right)) && edit.Image != null)
+            //{
+            //    PictureEditViewInfo vi = edit.GetViewInfo() as PictureEditViewInfo;
+            //    double zoomX = 1.0, zoomY = 1.0;
+
+            //    if (ZoomPercentChanged && edit.Properties.SizeMode != PictureSizeMode.Squeeze)
+            //        zoomX = zoomY = Convert.ToDouble(edit.Properties.ZoomPercent) / 100;
+            //    else
+            //        switch (edit.Properties.SizeMode)
+            //        {
+            //            case PictureSizeMode.Zoom:
+            //            case PictureSizeMode.Squeeze:
+            //                zoomX = zoomY = Convert.ToDouble(vi.PictureScreenBounds.Width / pictureEdit1.Image.Size.Width);
+            //                break;
+            //            case PictureSizeMode.Stretch:
+            //                zoomX = Convert.ToDouble(vi.PictureScreenBounds.Width / pictureEdit1.Image.Size.Width);
+            //                zoomY = Convert.ToDouble(vi.PictureScreenBounds.Height / pictureEdit1.Image.Size.Height);
+            //                break;
+            //            case PictureSizeMode.StretchHorizontal:
+            //                zoomX = Convert.ToDouble(vi.PictureScreenBounds.Width / pictureEdit1.Image.Size.Width);
+            //                break;
+            //            case PictureSizeMode.StretchVertical:
+            //                zoomY = zoomY = Convert.ToDouble(vi.PictureScreenBounds.Height / pictureEdit1.Image.Size.Height);
+            //                break;
+            //        }
+
+            //    int scrollX = (edit.Controls[1] as DevExpress.XtraEditors.HScrollBar).Value;
+            //    int scrollY = (edit.Controls[0] as DevExpress.XtraEditors.VScrollBar).Value;
+
+            //    //int scrollX = edit.HScrollBar.Value;
+            //    //int scrollY = edit.VScrollBar.Value;
+
+            //    int x, y;
+            //    if (edit.Controls[1].Visible == true)
+            //        x = (int)((e.X + scrollX - vi.PictureScreenBounds.X) / zoomX);
+            //    else
+            //        x = (int)((e.X - vi.PictureScreenBounds.X) / zoomX);
+            //    if (edit.Controls[0].Visible == true)
+            //        y = (int)((e.Y + scrollY - vi.PictureScreenBounds.Y) / zoomY);
+            //    else
+            //        y = (int)((e.Y - vi.PictureScreenBounds.Y) / zoomY);
+
+            //    //x = (int)((e.X + scrollX - vi.PictureScreenBounds.X) / zoomX);
+            //    //y = (int)((e.Y + scrollY - vi.PictureScreenBounds.Y) / zoomY);
+
+
+            //    if (CheckBounds(x, y))
+            //    {
+            //        //Graphics.FromImage(edit.Image).DrawRectangle(new Pen(Color.Red), x, y, 20, 20);
+
+            //        clipRect = new RectangleF(x, y, vi.PictureScreenBounds.Width, vi.PictureScreenBounds.Height);
+            //        edit.Refresh();
+            //    }
+            //}
+        }
+
+        bool CheckBounds(int x, int y)
+        {
+            return x >= 0 && x < pictureEdit1.Image.Width && y >= 0 && y < pictureEdit1.Image.Height;
+        }
+
+        /// <summary>
+        /// Calculate the distance between two points.
+        /// </summary>
+        private double GetDistance(Point pnt1, Point pnt2)
+        {
+            int a = pnt2.X - pnt1.X;
+            int b = pnt2.Y - pnt1.Y;
+
+            return Math.Sqrt(a * a + b * b);
+        }
+
+        private void pictureEdit1_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            PictureEdit edit = sender as PictureEdit;
+            if ((e.Button == MouseButtons.Left ||
+               (SystemInformation.MouseButtonsSwapped &&
+                e.Button == MouseButtons.Right)) && edit.Image != null)
+            {
+                PictureEditViewInfo vi = edit.GetViewInfo() as PictureEditViewInfo;
+                double zoomX = 1.0, zoomY = 1.0;
+
+                if (ZoomPercentChanged && edit.Properties.SizeMode != PictureSizeMode.Squeeze)
+                    zoomX = zoomY = Convert.ToDouble(edit.Properties.ZoomPercent) / 100;
+                else
+                    switch (edit.Properties.SizeMode)
+                    {
+                        case PictureSizeMode.Zoom:
+                        case PictureSizeMode.Squeeze:
+                            zoomX = zoomY = Convert.ToDouble(vi.PictureScreenBounds.Width / pictureEdit1.Image.Size.Width);
+                            break;
+                        case PictureSizeMode.Stretch:
+                            zoomX = Convert.ToDouble(vi.PictureScreenBounds.Width / pictureEdit1.Image.Size.Width);
+                            zoomY = Convert.ToDouble(vi.PictureScreenBounds.Height / pictureEdit1.Image.Size.Height);
+                            break;
+                        case PictureSizeMode.StretchHorizontal:
+                            zoomX = Convert.ToDouble(vi.PictureScreenBounds.Width / pictureEdit1.Image.Size.Width);
+                            break;
+                        case PictureSizeMode.StretchVertical:
+                            zoomY = zoomY = Convert.ToDouble(vi.PictureScreenBounds.Height / pictureEdit1.Image.Size.Height);
+                            break;
+                    }
+
+                int scrollX = (edit.Controls[1] as DevExpress.XtraEditors.HScrollBar).Value;
+                int scrollY = (edit.Controls[0] as DevExpress.XtraEditors.VScrollBar).Value;
+
+                //int scrollX = edit.HScrollBar.Value;
+                //int scrollY = edit.VScrollBar.Value;
+
+                int x, y;
+                if (edit.Controls[1].Visible == true)
+                    //x = (int)((e.X + scrollX - vi.PictureScreenBounds.X) / zoomX);
+                    x = (int)((scrollX - vi.PictureScreenBounds.X) / zoomX);
+                else
+                    //x = (int)((e.X - vi.PictureScreenBounds.X) / zoomX);
+                    x = (int)((vi.PictureScreenBounds.X) / zoomX);
+                if (edit.Controls[0].Visible == true)
+                    //y = (int)((e.Y + scrollY - vi.PictureScreenBounds.Y) / zoomY);
+                    y = (int)((scrollY - vi.PictureScreenBounds.Y) / zoomY);
+                else
+                    //y = (int)((e.Y - vi.PictureScreenBounds.Y) / zoomY);
+                    y = (int)((vi.PictureScreenBounds.Y) / zoomY);
+
+                //x = (int)((e.X + scrollX - vi.PictureScreenBounds.X) / zoomX);
+                //y = (int)((e.Y + scrollY - vi.PictureScreenBounds.Y) / zoomY);
+
+
+                if (CheckBounds(x, y))
+                {
+                    //Graphics.FromImage(edit.Image).DrawRectangle(new Pen(Color.Red), x, y, 20, 20);
+
+                    clipRect = new RectangleF(x, y, vi.PictureScreenBounds.Width, vi.PictureScreenBounds.Height);
+                    edit.Refresh();
+                }
+            }
+        }
     }
 }

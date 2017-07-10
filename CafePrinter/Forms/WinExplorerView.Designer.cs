@@ -143,6 +143,9 @@ namespace CafePrintter.Forms
             this.editBreadCrumb = new DevExpress.XtraEditors.BreadCrumbEdit();
             this.contentPanel = new DevExpress.XtraEditors.PanelControl();
             this.LayoutControl = new DevExpress.XtraLayout.LayoutControl();
+            this.pictureEdit2 = new DevExpress.XtraEditors.PictureEdit();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.lueSizeMode = new DevExpress.XtraEditors.LookUpEdit();
             this.btnCropImage = new DevExpress.XtraEditors.SimpleButton();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
@@ -150,7 +153,6 @@ namespace CafePrintter.Forms
             this.btnXoayTrai = new DevExpress.XtraEditors.SimpleButton();
             this.btnXoayDoc = new DevExpress.XtraEditors.SimpleButton();
             this.btnXoayPhai = new DevExpress.XtraEditors.SimpleButton();
-            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.gridControl = new DevExpress.XtraGrid.GridControl();
             this.winExplorerView = new DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView();
             this.columnName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -159,6 +161,7 @@ namespace CafePrintter.Forms
             this.columnGroup = new DevExpress.XtraGrid.Columns.GridColumn();
             this.columnImage = new DevExpress.XtraGrid.Columns.GridColumn();
             this.liNavPaneRight = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.LayoutControlMainGroup = new DevExpress.XtraLayout.LayoutControlGroup();
             this.LayoutControlItemExplorerView = new DevExpress.XtraLayout.LayoutControlItem();
             this.SplitterItem1 = new DevExpress.XtraLayout.SplitterItem();
@@ -167,14 +170,13 @@ namespace CafePrintter.Forms
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.itemPopupMenu = new DevExpress.XtraBars.PopupMenu(this.components);
             this.navigationMenu = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RibbonControl)).BeginInit();
@@ -195,11 +197,15 @@ namespace CafePrintter.Forms
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).BeginInit();
             this.LayoutControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lueSizeMode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueSizeMode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.winExplorerView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.liNavPaneRight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlMainGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemExplorerView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitterItem1)).BeginInit();
@@ -208,15 +214,13 @@ namespace CafePrintter.Forms
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemPopupMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationMenu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             this.SuspendLayout();
             // 
             // repositoryItemTextEdit3
@@ -1143,6 +1147,7 @@ namespace CafePrintter.Forms
             // 
             // LayoutControl
             // 
+            this.LayoutControl.Controls.Add(this.pictureEdit2);
             this.LayoutControl.Controls.Add(this.panelControl1);
             this.LayoutControl.Controls.Add(this.lueSizeMode);
             this.LayoutControl.Controls.Add(this.btnCropImage);
@@ -1155,7 +1160,8 @@ namespace CafePrintter.Forms
             this.LayoutControl.Controls.Add(this.navBar);
             this.LayoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutControl.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.liNavPaneRight});
+            this.liNavPaneRight,
+            this.layoutControlItem8});
             this.LayoutControl.Location = new System.Drawing.Point(2, 2);
             this.LayoutControl.Name = "LayoutControl";
             this.LayoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(708, 419, 836, 529);
@@ -1164,15 +1170,64 @@ namespace CafePrintter.Forms
             this.LayoutControl.TabIndex = 3;
             this.LayoutControl.Text = "LayoutControl";
             // 
+            // pictureEdit2
+            // 
+            this.pictureEdit2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureEdit2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureEdit2.Location = new System.Drawing.Point(508, 2);
+            this.pictureEdit2.MaximumSize = new System.Drawing.Size(300, 300);
+            this.pictureEdit2.MinimumSize = new System.Drawing.Size(300, 300);
+            this.pictureEdit2.Name = "pictureEdit2";
+            this.pictureEdit2.Properties.AllowScrollViaMouseDrag = true;
+            this.pictureEdit2.Properties.AllowZoomOnMouseWheel = DevExpress.Utils.DefaultBoolean.True;
+            this.pictureEdit2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit2.Properties.ZoomAccelerationFactor = 20D;
+            this.pictureEdit2.Properties.ZoomingOperationMode = DevExpress.XtraEditors.Repository.ZoomingOperationMode.MouseWheel;
+            this.pictureEdit2.Size = new System.Drawing.Size(300, 300);
+            this.pictureEdit2.StyleController = this.LayoutControl;
+            this.pictureEdit2.TabIndex = 4;
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.pictureEdit1);
+            this.panelControl1.Location = new System.Drawing.Point(817, 2);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(383, 343);
+            this.panelControl1.TabIndex = 10;
+            // 
+            // pictureEdit1
+            // 
+            this.pictureEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureEdit1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureEdit1.Location = new System.Drawing.Point(47, 24);
+            this.pictureEdit1.MaximumSize = new System.Drawing.Size(300, 300);
+            this.pictureEdit1.MenuManager = this.RibbonControl;
+            this.pictureEdit1.MinimumSize = new System.Drawing.Size(300, 300);
+            this.pictureEdit1.Name = "pictureEdit1";
+            this.pictureEdit1.Properties.AllowZoomOnMouseWheel = DevExpress.Utils.DefaultBoolean.False;
+            this.pictureEdit1.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit1.Properties.ShowScrollBars = true;
+            this.pictureEdit1.Properties.ZoomAccelerationFactor = 20D;
+            this.pictureEdit1.Size = new System.Drawing.Size(300, 300);
+            this.pictureEdit1.TabIndex = 4;
+            this.pictureEdit1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureEdit1_Paint);
+            this.pictureEdit1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureEdit1_MouseDown);
+            this.pictureEdit1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureEdit1_MouseMove);
+            // 
             // lueSizeMode
             // 
-            this.lueSizeMode.Location = new System.Drawing.Point(889, 414);
+            this.lueSizeMode.Location = new System.Drawing.Point(925, 414);
             this.lueSizeMode.MenuManager = this.RibbonControl;
             this.lueSizeMode.Name = "lueSizeMode";
             this.lueSizeMode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lueSizeMode.Properties.NullText = "";
-            this.lueSizeMode.Size = new System.Drawing.Size(299, 20);
+            this.lueSizeMode.Size = new System.Drawing.Size(263, 20);
             this.lueSizeMode.StyleController = this.LayoutControl;
             this.lueSizeMode.TabIndex = 9;
             this.lueSizeMode.EditValueChanged += new System.EventHandler(this.lueSizeMode_EditValueChanged);
@@ -1207,7 +1262,7 @@ namespace CafePrintter.Forms
             // 
             // btnXoayNgang
             // 
-            this.btnXoayNgang.Location = new System.Drawing.Point(829, 438);
+            this.btnXoayNgang.Location = new System.Drawing.Point(829, 414);
             this.btnXoayNgang.Name = "btnXoayNgang";
             this.btnXoayNgang.Size = new System.Drawing.Size(359, 22);
             this.btnXoayNgang.StyleController = this.LayoutControl;
@@ -1217,7 +1272,7 @@ namespace CafePrintter.Forms
             // 
             // btnXoayTrai
             // 
-            this.btnXoayTrai.Location = new System.Drawing.Point(829, 464);
+            this.btnXoayTrai.Location = new System.Drawing.Point(829, 440);
             this.btnXoayTrai.Name = "btnXoayTrai";
             this.btnXoayTrai.Size = new System.Drawing.Size(178, 22);
             this.btnXoayTrai.StyleController = this.LayoutControl;
@@ -1227,7 +1282,7 @@ namespace CafePrintter.Forms
             // 
             // btnXoayDoc
             // 
-            this.btnXoayDoc.Location = new System.Drawing.Point(829, 490);
+            this.btnXoayDoc.Location = new System.Drawing.Point(829, 466);
             this.btnXoayDoc.Name = "btnXoayDoc";
             this.btnXoayDoc.Size = new System.Drawing.Size(359, 22);
             this.btnXoayDoc.StyleController = this.LayoutControl;
@@ -1237,7 +1292,7 @@ namespace CafePrintter.Forms
             // 
             // btnXoayPhai
             // 
-            this.btnXoayPhai.Location = new System.Drawing.Point(1011, 464);
+            this.btnXoayPhai.Location = new System.Drawing.Point(1011, 440);
             this.btnXoayPhai.Name = "btnXoayPhai";
             this.btnXoayPhai.Size = new System.Drawing.Size(177, 22);
             this.btnXoayPhai.StyleController = this.LayoutControl;
@@ -1245,32 +1300,13 @@ namespace CafePrintter.Forms
             this.btnXoayPhai.Text = "Xoay phải";
             this.btnXoayPhai.Click += new System.EventHandler(this.btnXoayPhai_Click);
             // 
-            // pictureEdit1
-            // 
-            this.pictureEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureEdit1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pictureEdit1.Location = new System.Drawing.Point(56, 23);
-            this.pictureEdit1.MaximumSize = new System.Drawing.Size(300, 300);
-            this.pictureEdit1.MenuManager = this.RibbonControl;
-            this.pictureEdit1.MinimumSize = new System.Drawing.Size(300, 300);
-            this.pictureEdit1.Name = "pictureEdit1";
-            this.pictureEdit1.Properties.AllowScrollViaMouseDrag = true;
-            this.pictureEdit1.Properties.AllowZoomOnMouseWheel = DevExpress.Utils.DefaultBoolean.True;
-            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit1.Properties.ZoomAccelerationFactor = 20D;
-            this.pictureEdit1.Properties.ZoomingOperationMode = DevExpress.XtraEditors.Repository.ZoomingOperationMode.MouseWheel;
-            this.pictureEdit1.Size = new System.Drawing.Size(300, 300);
-            this.pictureEdit1.TabIndex = 4;
-            // 
             // gridControl
             // 
             this.gridControl.Location = new System.Drawing.Point(2, 2);
             this.gridControl.MainView = this.winExplorerView;
             this.gridControl.MenuManager = this.RibbonControl;
             this.gridControl.Name = "gridControl";
-            this.gridControl.Size = new System.Drawing.Size(806, 532);
+            this.gridControl.Size = new System.Drawing.Size(406, 532);
             this.gridControl.TabIndex = 2;
             this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.winExplorerView});
@@ -1359,6 +1395,15 @@ namespace CafePrintter.Forms
             this.liNavPaneRight.TextSize = new System.Drawing.Size(0, 0);
             this.liNavPaneRight.TextVisible = false;
             // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.lueSizeMode;
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(363, 24);
+            this.layoutControlItem8.Text = "Loại hiển thị";
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(93, 13);
+            // 
             // LayoutControlMainGroup
             // 
             this.LayoutControlMainGroup.CustomizationFormText = "Root";
@@ -1371,7 +1416,8 @@ namespace CafePrintter.Forms
             this.layoutControlItem6,
             this.layoutControlItem7,
             this.emptySpaceItem1,
-            this.layoutControlItem9});
+            this.layoutControlItem9,
+            this.layoutControlItem1});
             this.LayoutControlMainGroup.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlMainGroup.Name = "Root";
             this.LayoutControlMainGroup.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 10, 10, 10);
@@ -1384,7 +1430,7 @@ namespace CafePrintter.Forms
             this.LayoutControlItemExplorerView.CustomizationFormText = "LayoutControlItemExplorerView";
             this.LayoutControlItemExplorerView.Location = new System.Drawing.Point(0, 0);
             this.LayoutControlItemExplorerView.Name = "LayoutControlItemExplorerView";
-            this.LayoutControlItemExplorerView.Size = new System.Drawing.Size(810, 536);
+            this.LayoutControlItemExplorerView.Size = new System.Drawing.Size(410, 536);
             this.LayoutControlItemExplorerView.TextSize = new System.Drawing.Size(0, 0);
             this.LayoutControlItemExplorerView.TextVisible = false;
             // 
@@ -1402,17 +1448,16 @@ namespace CafePrintter.Forms
             this.layoutControlItem3,
             this.layoutControlItem4,
             this.layoutControlItem5,
-            this.layoutControlItem2,
-            this.layoutControlItem8});
+            this.layoutControlItem2});
             this.layoutControlGroup1.Location = new System.Drawing.Point(815, 382);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(387, 144);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(387, 120);
             this.layoutControlGroup1.Text = "Điều chỉnh";
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnXoayDoc;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 76);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 52);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(363, 26);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
@@ -1421,7 +1466,7 @@ namespace CafePrintter.Forms
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btnXoayTrai;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 50);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 26);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(182, 26);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
@@ -1430,7 +1475,7 @@ namespace CafePrintter.Forms
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.btnXoayNgang;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(363, 26);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
@@ -1439,20 +1484,11 @@ namespace CafePrintter.Forms
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnXoayPhai;
-            this.layoutControlItem2.Location = new System.Drawing.Point(182, 50);
+            this.layoutControlItem2.Location = new System.Drawing.Point(182, 26);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(181, 26);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
-            // 
-            // layoutControlItem8
-            // 
-            this.layoutControlItem8.Control = this.lueSizeMode;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(363, 24);
-            this.layoutControlItem8.Text = "Loại hiển thị";
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(57, 13);
             // 
             // layoutControlItem6
             // 
@@ -1475,10 +1511,30 @@ namespace CafePrintter.Forms
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(815, 526);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(815, 502);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(387, 10);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(387, 34);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.panelControl1;
+            this.layoutControlItem9.Location = new System.Drawing.Point(815, 0);
+            this.layoutControlItem9.MaxSize = new System.Drawing.Size(387, 0);
+            this.layoutControlItem9.MinSize = new System.Drawing.Size(387, 5);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(387, 347);
+            this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem9.TextVisible = false;
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.pictureEdit2;
+            this.layoutControlItem1.Location = new System.Drawing.Point(410, 0);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(400, 536);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(93, 13);
             // 
             // itemPopupMenu
             // 
@@ -1496,23 +1552,6 @@ namespace CafePrintter.Forms
             // 
             this.navigationMenu.Name = "navigationMenu";
             this.navigationMenu.Ribbon = this.RibbonControl;
-            // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.pictureEdit1);
-            this.panelControl1.Location = new System.Drawing.Point(817, 2);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(383, 343);
-            this.panelControl1.TabIndex = 10;
-            // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.Control = this.panelControl1;
-            this.layoutControlItem9.Location = new System.Drawing.Point(815, 0);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(387, 347);
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem9.TextVisible = false;
             // 
             // ExplorerView
             // 
@@ -1545,11 +1584,15 @@ namespace CafePrintter.Forms
             this.contentPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControl)).EndInit();
             this.LayoutControl.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.lueSizeMode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueSizeMode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.winExplorerView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.liNavPaneRight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlMainGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayoutControlItemExplorerView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitterItem1)).EndInit();
@@ -1558,15 +1601,13 @@ namespace CafePrintter.Forms
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemPopupMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationMenu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1698,6 +1739,8 @@ namespace CafePrintter.Forms
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private PanelControl panelControl1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
+        private PictureEdit pictureEdit2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
     }
 }
 
