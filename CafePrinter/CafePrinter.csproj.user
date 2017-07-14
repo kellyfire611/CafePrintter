@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ProjectView>ShowAllFiles</ProjectView>
     <PublishUrlHistory>D:\dnpcuong\Server\IIS\CafePrinter\|publish\</PublishUrlHistory>
-    <InstallUrlHistory>http://172.16.160.131:9999/CafePrinter/</InstallUrlHistory>
+    <InstallUrlHistory>http://localhost/CafePrinter/|http://172.16.160.131:9999/CafePrinter/</InstallUrlHistory>
     <SupportUrlHistory />
     <UpdateUrlHistory />
     <BootstrapperUrlHistory />

@@ -575,14 +575,14 @@ namespace CafePrintter.Forms
 
             Bitmap dstImage = new Bitmap(original.Width, original.Height, original.PixelFormat);
             Graphics g = Graphics.FromImage(dstImage);
-               using (Brush br = new SolidBrush(Color.Plum)) {
-                   g.FillRectangle(br, 0, 0, dstImage.Width, dstImage.Height);
-               }
-               GraphicsPath path = new GraphicsPath();
+                using (Brush br = new SolidBrush(Color.Plum)) {
+                    g.FillRectangle(br, 0, 0, dstImage.Width, dstImage.Height);
+                }
+                GraphicsPath path = new GraphicsPath();
             //path.AddEllipse(0, 0, dstImage.Width, dstImage.Height);
             path.AddEllipse(clipRect);
-               g.SetClip(path);
-               g.DrawImage(original, 0, 0);
+                g.SetClip(path);
+                g.DrawImage(original, 0, 0);
             dstImage.MakeTransparent(Color.Plum);
 
             //pictureEdit2.Image = ClipImage(pictureEdit1.Image, clipRect);

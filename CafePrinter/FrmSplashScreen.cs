@@ -14,7 +14,7 @@ namespace CafePrintter
 {
     public partial class FrmSplashScreen : SplashScreen
     {
-        private CoreModel context = new CoreModel();
+        //private CoreModel context = new CoreModel();
 
         public FrmSplashScreen()
         {
@@ -36,19 +36,19 @@ namespace CafePrintter
 
         private void FrmSplashScreen_Load(object sender, EventArgs e)
         {
-            var q = context.sys_user.FirstOrDefault();
+            //var q = context.sys_user.FirstOrDefault();
 
-            // Lấy version hiện tại lúc build
-            Version currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            //// Lấy version hiện tại lúc build
+            //Version currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
 
-            // Kiểm tra version khi build bằng ClickOnce
-            if (ApplicationDeployment.IsNetworkDeployed)
-            {
-                currentVersion = ApplicationDeployment.CurrentDeployment.CurrentVersion;
-            }
-            lblVersion.Text += string.Format("{0}.{1}.{2}.{3}",
-                currentVersion.Major, currentVersion.Minor,
-                currentVersion.Build, currentVersion.Revision);
+            //// Kiểm tra version khi build bằng ClickOnce
+            //if (ApplicationDeployment.IsNetworkDeployed)
+            //{
+            //    currentVersion = ApplicationDeployment.CurrentDeployment.CurrentVersion;
+            //}
+            //lblVersion.Text += string.Format("{0}.{1}.{2}.{3}",
+            //    currentVersion.Major, currentVersion.Minor,
+            //    currentVersion.Build, currentVersion.Revision);
         }
     }
 }
