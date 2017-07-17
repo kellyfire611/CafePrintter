@@ -43,6 +43,7 @@ namespace CafePrinterV2
             this.btnRotateLeft = new System.Windows.Forms.Button();
             this.propertyGrid = new System.Windows.Forms.PropertyGrid();
             this.imageBox = new Cyotek.Windows.Forms.ImageBox();
+            this.btnPreview = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.previewImageBox = new Cyotek.Windows.Forms.ImageBox();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -88,7 +89,6 @@ namespace CafePrinterV2
             this.fitCursorLocationToBoundsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnPreview = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.selectionSplitContainer)).BeginInit();
             this.selectionSplitContainer.Panel1.SuspendLayout();
             this.selectionSplitContainer.Panel2.SuspendLayout();
@@ -212,6 +212,19 @@ namespace CafePrinterV2
             this.imageBox.MouseLeave += new System.EventHandler(this.imageBox_MouseLeave);
             this.imageBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
             this.imageBox.Resize += new System.EventHandler(this.imageBox_Resize);
+            // 
+            // btnPreview
+            // 
+            this.btnPreview.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPreview.ForeColor = System.Drawing.Color.Red;
+            this.btnPreview.Location = new System.Drawing.Point(379, 560);
+            this.btnPreview.Name = "btnPreview";
+            this.btnPreview.Size = new System.Drawing.Size(109, 34);
+            this.btnPreview.TabIndex = 1;
+            this.btnPreview.Text = "Xem trước";
+            this.btnPreview.UseVisualStyleBackColor = true;
+            this.btnPreview.Visible = false;
+            this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
             // btnPrint
             // 
@@ -438,6 +451,7 @@ namespace CafePrinterV2
             this.CropToolStripButton.Name = "CropToolStripButton";
             this.CropToolStripButton.Size = new System.Drawing.Size(24, 25);
             this.CropToolStripButton.Text = "Crop";
+            this.CropToolStripButton.Visible = false;
             this.CropToolStripButton.Click += new System.EventHandler(this.CropToolStripButton_Click);
             // 
             // RotateLeftToolStripButton
@@ -448,6 +462,7 @@ namespace CafePrinterV2
             this.RotateLeftToolStripButton.Name = "RotateLeftToolStripButton";
             this.RotateLeftToolStripButton.Size = new System.Drawing.Size(24, 25);
             this.RotateLeftToolStripButton.Text = "Xoay trái";
+            this.RotateLeftToolStripButton.Visible = false;
             this.RotateLeftToolStripButton.Click += new System.EventHandler(this.RotateLeftToolStripButton_Click);
             // 
             // RotateRightToolStripButton
@@ -458,6 +473,7 @@ namespace CafePrinterV2
             this.RotateRightToolStripButton.Name = "RotateRightToolStripButton";
             this.RotateRightToolStripButton.Size = new System.Drawing.Size(24, 25);
             this.RotateRightToolStripButton.Text = "Xoay phải";
+            this.RotateRightToolStripButton.Visible = false;
             // 
             // RotateHorizontalToolStripButton
             // 
@@ -467,6 +483,7 @@ namespace CafePrinterV2
             this.RotateHorizontalToolStripButton.Name = "RotateHorizontalToolStripButton";
             this.RotateHorizontalToolStripButton.Size = new System.Drawing.Size(24, 25);
             this.RotateHorizontalToolStripButton.Text = "Xoay ngang";
+            this.RotateHorizontalToolStripButton.Visible = false;
             // 
             // RotateVerticalToolStripButton
             // 
@@ -476,6 +493,7 @@ namespace CafePrinterV2
             this.RotateVerticalToolStripButton.Name = "RotateVerticalToolStripButton";
             this.RotateVerticalToolStripButton.Size = new System.Drawing.Size(24, 25);
             this.RotateVerticalToolStripButton.Text = "Xoay dọc";
+            this.RotateVerticalToolStripButton.Visible = false;
             // 
             // menuStrip
             // 
@@ -498,8 +516,8 @@ namespace CafePrinterV2
             this.toolStripSeparator3,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
-            this.fileToolStripMenuItem.Text = "&File";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
+            this.fileToolStripMenuItem.Text = "&Tập tin";
             // 
             // openToolStripMenuItem
             // 
@@ -507,8 +525,8 @@ namespace CafePrinterV2
             this.openFromFileToolStripMenuItem,
             this.fromURLToolStripMenuItem});
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
-            this.openToolStripMenuItem.Text = "&Open";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.openToolStripMenuItem.Text = "&Chọn file";
             // 
             // openFromFileToolStripMenuItem
             // 
@@ -516,28 +534,29 @@ namespace CafePrinterV2
             this.openFromFileToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openFromFileToolStripMenuItem.Name = "openFromFileToolStripMenuItem";
             this.openFromFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openFromFileToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
-            this.openFromFileToolStripMenuItem.Text = "From &File...";
+            this.openFromFileToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.openFromFileToolStripMenuItem.Text = "Chọn từ &File...";
             this.openFromFileToolStripMenuItem.Click += new System.EventHandler(this.openFromFileToolStripMenuItem_Click);
             // 
             // fromURLToolStripMenuItem
             // 
             this.fromURLToolStripMenuItem.Name = "fromURLToolStripMenuItem";
-            this.fromURLToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.fromURLToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
             this.fromURLToolStripMenuItem.Text = "From &URL...";
+            this.fromURLToolStripMenuItem.Visible = false;
             this.fromURLToolStripMenuItem.Click += new System.EventHandler(this.fromURLToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(173, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(175, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
-            this.exitToolStripMenuItem.Text = "&Close";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.exitToolStripMenuItem.Text = "&Thoát";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
@@ -549,8 +568,8 @@ namespace CafePrinterV2
             this.selectNoneToolStripMenuItem,
             this.settingToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(47, 24);
-            this.editToolStripMenuItem.Text = "&Edit";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(91, 24);
+            this.editToolStripMenuItem.Text = "&Hiệu chỉnh";
             // 
             // copyToolStripMenuItem
             // 
@@ -560,6 +579,7 @@ namespace CafePrinterV2
             this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             this.copyToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
             this.copyToolStripMenuItem.Text = "&Copy";
+            this.copyToolStripMenuItem.Visible = false;
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // toolStripSeparator6
@@ -574,6 +594,7 @@ namespace CafePrinterV2
             this.selectAllToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
             this.selectAllToolStripMenuItem.Text = "Select &All";
+            this.selectAllToolStripMenuItem.Visible = false;
             this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
             // 
             // selectNoneToolStripMenuItem
@@ -583,13 +604,14 @@ namespace CafePrinterV2
             this.selectNoneToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.selectNoneToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
             this.selectNoneToolStripMenuItem.Text = "Select &None";
+            this.selectNoneToolStripMenuItem.Visible = false;
             this.selectNoneToolStripMenuItem.Click += new System.EventHandler(this.selectNoneToolStripMenuItem_Click);
             // 
             // settingToolStripMenuItem
             // 
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
             this.settingToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
-            this.settingToolStripMenuItem.Text = "Setting";
+            this.settingToolStripMenuItem.Text = "Cấu hình";
             this.settingToolStripMenuItem.Click += new System.EventHandler(this.settingToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
@@ -599,6 +621,7 @@ namespace CafePrinterV2
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.viewToolStripMenuItem.Text = "&View";
+            this.viewToolStripMenuItem.Visible = false;
             // 
             // fitCursorLocationToBoundsToolStripMenuItem
             // 
@@ -616,6 +639,7 @@ namespace CafePrinterV2
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem.Text = "&Help";
+            this.helpToolStripMenuItem.Visible = false;
             // 
             // aboutToolStripMenuItem
             // 
@@ -623,18 +647,6 @@ namespace CafePrinterV2
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(134, 26);
             this.aboutToolStripMenuItem.Text = "&About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // btnPreview
-            // 
-            this.btnPreview.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPreview.ForeColor = System.Drawing.Color.Red;
-            this.btnPreview.Location = new System.Drawing.Point(379, 560);
-            this.btnPreview.Name = "btnPreview";
-            this.btnPreview.Size = new System.Drawing.Size(109, 34);
-            this.btnPreview.TabIndex = 1;
-            this.btnPreview.Text = "Xem trước";
-            this.btnPreview.UseVisualStyleBackColor = true;
-            this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
             // GeneralDemoForm
             // 
@@ -651,7 +663,7 @@ namespace CafePrinterV2
             this.ShowIcon = true;
             this.ShowInTaskbar = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "General Demonstration";
+            this.Text = "Cafe Printer";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.selectionSplitContainer.Panel1.ResumeLayout(false);
             this.selectionSplitContainer.Panel2.ResumeLayout(false);

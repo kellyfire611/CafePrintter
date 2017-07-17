@@ -354,7 +354,6 @@ namespace CafePrinterV2
                 _previewImage.Dispose();
             }
 
-            //_previewImage = 
             int scrollX = imageBox.HorizontalScroll.Value;
             int scrollY = imageBox.VerticalScroll.Value;
 
@@ -373,40 +372,49 @@ namespace CafePrinterV2
             var imageSize = new Size((int)(imageBox.Image.Width / resizeFactor), (int)(imageBox.Image.Height / resizeFactor));
 
 
-
             var rect = new RectangleF(_gocToaDo, new SizeF((float)(imageBox.ClientRectangle.Width / (zoomX / 100))
                 , (float)(imageBox.ClientRectangle.Height / (zoomX / 100))));
 
-            _previewImage = new Bitmap(imageBox.Image.Width, imageBox.Image.Height, imageBox.Image.PixelFormat);
-            Graphics g = Graphics.FromImage(_previewImage);
+
+            //_previewImage = new Bitmap(imageBox.Image.Width, imageBox.Image.Height, imageBox.Image.PixelFormat);
+            //Bitmap tempImage = new Bitmap(imageBox.Image); 
+            Bitmap tempImage = null;
+            try
+            {
+                // create Image Object using rear image byte[]
+                Image imag = imageBox.Image;
+                // Derive BitMap object using Image instance, so that you can avoid the issue
+                //"a graphics object cannot be created from an image that has an indexed pixel format"
+                tempImage = new Bitmap(new Bitmap(imag));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+            //Bitmap tempBitmap = new Bitmap(tempImage.Width, tempImage.Height, imageBox.Image.PixelFormat);
+
+            Graphics g = Graphics.FromImage(tempImage);
             using (Brush br = new SolidBrush(Color.Plum))
             {
-                //g.FillRectangle(br, 0, 0, _previewImage.Width, _previewImage.Height);
+               g.FillRectangle(br, 0, 0, tempImage.Width, tempImage.Height);
             }
             GraphicsPath path = new GraphicsPath();
             path.AddEllipse(rect);
+            //path.AddRectangle(rect);
             g.SetClip(path);
-            g.DrawImage(imageBox.Image, 0, 0);
-            //_previewImage.MakeTransparent(Color.Plum);
+            //g.DrawPath(Pens.Red, path);
+            g.DrawImage(imageBox.Image, 0, 0, imageBox.Image.Width, imageBox.Image.Height);
+            tempImage.MakeTransparent(Color.Plum);
 
             //Image img = new Bitmap(dstImage);
             //img = ClipImage(dstImage, clipRect);
             //return img;
 
-            var a = GetDisplayedImageSize(imageBox);
+         
 
-
-
-
-
-            Graphics g2 = Graphics.FromImage(imageBox.Image);
-            using (Brush br = new SolidBrush(Color.Red))
-            {
-                //g2.FillRectangle(br, _gocToaDo.X, _gocToaDo.Y, 20, 20);
-            }
-
-            var clippedImage = ClipImage(_previewImage, rect);
-
+            var clippedImage = ClipImage(tempImage, rect);
             previewImageBox.Image = clippedImage;
             previewImageBox.Zoom = imageBox.Zoom;
         }
@@ -523,68 +531,93 @@ namespace CafePrinterV2
                 string jsonData = JsonHelper.DataToJson(GlobalSetting.Data);
                 JsonHelper.SaveAndRefresh(jsonData);
 
-                btnPrint.Text = String.Format("{0}({1})", "In", GlobalSetting.Data.printer_counter);
+                btnPrint.Text = String.Format("{0}({1})", "In ảnh", GlobalSetting.Data.printer_counter);
                 //lblCounter.Text = String.Format("{0} ({1})", "Đã in", GlobalSetting.Data.printer_counter);
             }
             else
             {
-                MessageBox.Show("Vui lòng cấu hình máy in.");
+                MessageBox.Show("Vui lòng cấu hình máy in, định dạng in.");
             }
         }
 
         public void Print(string printerName)
         {
-            try
+            if (GlobalSetting.Data == null)
             {
-                var tempFile = Path.GetTempFileName();
-                previewImageBox.Image.Save(tempFile);
-                if (string.IsNullOrWhiteSpace(tempFile)) return; // Prevents execution of below statements if filename is not selected.
-
-                PrintDocument pd = new PrintDocument();
-
-                //Disable the printing document pop-up dialog shown during printing.
-                PrintController printController = new StandardPrintController();
-                pd.PrintController = printController;
-
-                //For testing only: Hardcoded set paper size to particular paper.
-                //pd.PrinterSettings.DefaultPageSettings.PaperSize = new PaperSize("Custom 6x4", 720, 478);
-                //pd.DefaultPageSettings.PaperSize = new PaperSize("Custom 6x4", 720, 478);
-
-                pd.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
-                pd.PrinterSettings.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
-
-                pd.PrintPage += (sndr, args) =>
-                {
-                    System.Drawing.Image i = System.Drawing.Image.FromFile(tempFile);
-
-                    //Adjust the size of the image to the page to print the full image without loosing any part of the image.
-                    System.Drawing.Rectangle m = args.MarginBounds;
-
-                    //Logic below maintains Aspect Ratio.
-                    if ((double)i.Width / (double)i.Height > (double)m.Width / (double)m.Height) // image is wider
-                    {
-                        m.Height = (int)((double)i.Height / (double)i.Width * (double)m.Width);
-                    }
-                    else
-                    {
-                        m.Width = (int)((double)i.Width / (double)i.Height * (double)m.Height);
-                    }
-                    //Calculating optimal orientation.
-                    pd.DefaultPageSettings.Landscape = m.Width > m.Height;
-                    //Putting image in center of page.
-                    m.Y = (int)((((System.Drawing.Printing.PrintDocument)(sndr)).DefaultPageSettings.PaperSize.Height - m.Height) / 2);
-                    m.X = (int)((((System.Drawing.Printing.PrintDocument)(sndr)).DefaultPageSettings.PaperSize.Width - m.Width) / 2);
-                    args.Graphics.DrawImage(i, m);
-                };
-                pd.Print();
+                MessageBox.Show("Không tìm thấy cấu hình, định dạng trang in.");
+                return;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-            }
+
+            var duongKinh = GlobalSetting.Data.margin_radius * 10;
+            var leTren = GlobalSetting.Data.margin_leTren * 10;
+            var leTrenVachKe = GlobalSetting.Data.margin_leTrenVachKe * 10;
+            var leTrai = GlobalSetting.Data.margin_leTrai * 10;
+            var vachKe = GlobalSetting.Data.margin_vachKe * 10;
+            var vachKeChieuRong = 1 * 10;
+            var leTraiVachKe = 2 * 10;
+
+            XRptPrintA4 rpt = new XRptPrintA4();
+            rpt.Detail.HeightF = leTren + duongKinh + 10;
+            rpt.xrPictureBox1.Image = previewImageBox.Image;
+            rpt.xrPictureBox1.SizeF = new SizeF(duongKinh, duongKinh);
+            rpt.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat((leTrai - (duongKinh / 2)), (leTren - (duongKinh / 2)));
+            rpt.xrLine1.SizeF = new SizeF(vachKeChieuRong, vachKe);
+            rpt.xrLine1.LocationF = new PointF(leTraiVachKe, leTrenVachKe + (5 * 10));
+
+            rpt.PrinterName = printerName;
+            rpt.Print();
+
+            //try
+            //{
+            //    var tempFile = Path.GetTempFileName();
+            //    previewImageBox.Image.Save(tempFile);
+            //    if (string.IsNullOrWhiteSpace(tempFile)) return; // Prevents execution of below statements if filename is not selected.
+
+            //    PrintDocument pd = new PrintDocument();
+
+            //    //Disable the printing document pop-up dialog shown during printing.
+            //    PrintController printController = new StandardPrintController();
+            //    pd.PrintController = printController;
+
+            //    //For testing only: Hardcoded set paper size to particular paper.
+            //    //pd.PrinterSettings.DefaultPageSettings.PaperSize = new PaperSize("Custom 6x4", 720, 478);
+            //    //pd.DefaultPageSettings.PaperSize = new PaperSize("Custom 6x4", 720, 478);
+
+            //    pd.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
+            //    pd.PrinterSettings.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
+
+            //    pd.PrintPage += (sndr, args) =>
+            //    {
+            //        System.Drawing.Image i = System.Drawing.Image.FromFile(tempFile);
+
+            //        //Adjust the size of the image to the page to print the full image without loosing any part of the image.
+            //        System.Drawing.Rectangle m = args.MarginBounds;
+
+            //        //Logic below maintains Aspect Ratio.
+            //        if ((double)i.Width / (double)i.Height > (double)m.Width / (double)m.Height) // image is wider
+            //        {
+            //            m.Height = (int)((double)i.Height / (double)i.Width * (double)m.Width);
+            //        }
+            //        else
+            //        {
+            //            m.Width = (int)((double)i.Width / (double)i.Height * (double)m.Height);
+            //        }
+            //        //Calculating optimal orientation.
+            //        pd.DefaultPageSettings.Landscape = m.Width > m.Height;
+            //        //Putting image in center of page.
+            //        m.Y = (int)((((System.Drawing.Printing.PrintDocument)(sndr)).DefaultPageSettings.PaperSize.Height - m.Height) / 2);
+            //        m.X = (int)((((System.Drawing.Printing.PrintDocument)(sndr)).DefaultPageSettings.PaperSize.Width - m.Width) / 2);
+            //        args.Graphics.DrawImage(i, m);
+            //    };
+            //    pd.Print();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+            //finally
+            //{
+            //}
         }
 
         private void settingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -606,14 +639,18 @@ namespace CafePrinterV2
             var leTrenVachKe = GlobalSetting.Data.margin_leTrenVachKe * 10;
             var leTrai = GlobalSetting.Data.margin_leTrai * 10;
             var vachKe = GlobalSetting.Data.margin_vachKe * 10;
+            var vachKeChieuRong = 1 * 10;
+            var leTraiVachKe = 2 * 10;
 
             XRptPrintA4 rpt = new XRptPrintA4();
             rpt.Detail.HeightF = leTren + duongKinh + 10;
             rpt.xrPictureBox1.Image = previewImageBox.Image;
             rpt.xrPictureBox1.SizeF = new SizeF(duongKinh, duongKinh);
             rpt.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat((leTrai - (duongKinh / 2)), (leTren - (duongKinh / 2)));
+            rpt.xrLine1.SizeF = new SizeF(vachKeChieuRong, vachKe);
+            rpt.xrLine1.LocationF = new PointF(leTraiVachKe, leTrenVachKe + (5 * 10));
 
-
+            rpt.PrinterName = GlobalSetting.Data.printer_name;
             rpt.ShowPreviewDialog();
         }
     }
