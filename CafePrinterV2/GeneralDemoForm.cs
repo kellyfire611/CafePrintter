@@ -6,6 +6,11 @@ using System.Net;
 using System.Windows.Forms;
 using CafePrinterV2.Properties;
 using Cyotek.Windows.Forms;
+using CafePrintter2.Global;
+using CafePrinter2.Helper;
+using System.Drawing.Printing;
+using CafePrinterV2.Report;
+using DevExpress.XtraReports.UI;
 
 namespace CafePrinterV2
 {
@@ -33,6 +38,16 @@ namespace CafePrinterV2
         public GeneralDemoForm()
         {
             this.InitializeComponent();
+
+            // Load data
+            GlobalSetting.Data = JsonHelper.GetData();
+
+            if (GlobalSetting.Data != null)
+            {
+                btnPrint.Text = String.Format("{0}({1})", "In", GlobalSetting.Data.printer_counter);
+                //lblCounter.Text = String.Format("{0} ({1})", "Đã in", GlobalSetting.Data.printer_counter);
+                //currentPath = GlobalSetting.Data.folder_path;
+            }
         }
 
         #endregion
@@ -329,6 +344,11 @@ namespace CafePrinterV2
 
         private void CropToolStripButton_Click(object sender, EventArgs e)
         {
+            CropImage();
+        }
+
+        private void CropImage()
+        {
             if (_previewImage != null)
             {
                 _previewImage.Dispose();
@@ -375,10 +395,10 @@ namespace CafePrinterV2
 
             var a = GetDisplayedImageSize(imageBox);
 
-            
-            
 
-            
+
+
+
             Graphics g2 = Graphics.FromImage(imageBox.Image);
             using (Brush br = new SolidBrush(Color.Red))
             {
@@ -432,6 +452,169 @@ namespace CafePrinterV2
 
         private void imageBox_Zoomed(object sender, ImageBoxZoomEventArgs e)
         {
+        }
+
+        private void RotateLeftToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRotateLeft_Click(object sender, EventArgs e)
+        {
+            RotateLeft();
+        }
+
+        private void btnRotateRight_Click(object sender, EventArgs e)
+        {
+            RotateRight();
+        }
+
+        private void btnRotateHorizontal_Click(object sender, EventArgs e)
+        {
+            RotateHorizontal();
+        }
+
+        private void btnRotateVertical_Click(object sender, EventArgs e)
+        {
+            RotateVertical();
+        }
+
+        private void RotateLeft()
+        {
+            imageBox.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            imageBox.Refresh();
+        }
+
+        private void RotateRight()
+        {
+            imageBox.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            imageBox.Refresh();
+        }
+
+        private void RotateHorizontal()
+        {
+            imageBox.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            imageBox.Refresh();
+        }
+
+        private void RotateVertical()
+        {
+            imageBox.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            imageBox.Refresh();
+        }
+
+        private void btnCrop_Click(object sender, EventArgs e)
+        {
+            CropImage();
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if (GlobalSetting.Data != null)
+            {
+                Print(GlobalSetting.Data.printer_name);
+
+                // Cập nhật giao diện
+                if (GlobalSetting.Data != null)
+                {
+                    GlobalSetting.Data.printer_counter++;
+                }
+
+                string jsonData = JsonHelper.DataToJson(GlobalSetting.Data);
+                JsonHelper.SaveAndRefresh(jsonData);
+
+                btnPrint.Text = String.Format("{0}({1})", "In", GlobalSetting.Data.printer_counter);
+                //lblCounter.Text = String.Format("{0} ({1})", "Đã in", GlobalSetting.Data.printer_counter);
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng cấu hình máy in.");
+            }
+        }
+
+        public void Print(string printerName)
+        {
+            try
+            {
+                var tempFile = Path.GetTempFileName();
+                previewImageBox.Image.Save(tempFile);
+                if (string.IsNullOrWhiteSpace(tempFile)) return; // Prevents execution of below statements if filename is not selected.
+
+                PrintDocument pd = new PrintDocument();
+
+                //Disable the printing document pop-up dialog shown during printing.
+                PrintController printController = new StandardPrintController();
+                pd.PrintController = printController;
+
+                //For testing only: Hardcoded set paper size to particular paper.
+                //pd.PrinterSettings.DefaultPageSettings.PaperSize = new PaperSize("Custom 6x4", 720, 478);
+                //pd.DefaultPageSettings.PaperSize = new PaperSize("Custom 6x4", 720, 478);
+
+                pd.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
+                pd.PrinterSettings.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
+
+                pd.PrintPage += (sndr, args) =>
+                {
+                    System.Drawing.Image i = System.Drawing.Image.FromFile(tempFile);
+
+                    //Adjust the size of the image to the page to print the full image without loosing any part of the image.
+                    System.Drawing.Rectangle m = args.MarginBounds;
+
+                    //Logic below maintains Aspect Ratio.
+                    if ((double)i.Width / (double)i.Height > (double)m.Width / (double)m.Height) // image is wider
+                    {
+                        m.Height = (int)((double)i.Height / (double)i.Width * (double)m.Width);
+                    }
+                    else
+                    {
+                        m.Width = (int)((double)i.Width / (double)i.Height * (double)m.Height);
+                    }
+                    //Calculating optimal orientation.
+                    pd.DefaultPageSettings.Landscape = m.Width > m.Height;
+                    //Putting image in center of page.
+                    m.Y = (int)((((System.Drawing.Printing.PrintDocument)(sndr)).DefaultPageSettings.PaperSize.Height - m.Height) / 2);
+                    m.X = (int)((((System.Drawing.Printing.PrintDocument)(sndr)).DefaultPageSettings.PaperSize.Width - m.Width) / 2);
+                    args.Graphics.DrawImage(i, m);
+                };
+                pd.Print();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+            }
+        }
+
+        private void settingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmSetting frm = new FrmSetting();
+            frm.ShowDialog();
+        }
+
+        private void btnPreview_Click(object sender, EventArgs e)
+        {
+            if(GlobalSetting.Data == null)
+            {
+                MessageBox.Show("Không tìm thấy cấu hình, định dạng trang in.");
+                return;
+            }
+
+            var duongKinh = GlobalSetting.Data.margin_radius * 10;
+            var leTren = GlobalSetting.Data.margin_leTren * 10;
+            var leTrenVachKe = GlobalSetting.Data.margin_leTrenVachKe * 10;
+            var leTrai = GlobalSetting.Data.margin_leTrai * 10;
+            var vachKe = GlobalSetting.Data.margin_vachKe * 10;
+
+            XRptPrintA4 rpt = new XRptPrintA4();
+            rpt.Detail.HeightF = leTren + duongKinh + 10;
+            rpt.xrPictureBox1.Image = previewImageBox.Image;
+            rpt.xrPictureBox1.SizeF = new SizeF(duongKinh, duongKinh);
+            rpt.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat((leTrai - (duongKinh / 2)), (leTren - (duongKinh / 2)));
+
+
+            rpt.ShowPreviewDialog();
         }
     }
 }
